@@ -10,7 +10,7 @@ class GhoulMod(loader.Module):
     
     async def ghoulom_cmd(self, app: Client, message: types.Message):
     
-      """Гуль одним сообщеением"""
+      """Я гуль одним сообщением"""
       
       await utils.answer(message, 'Я гуль')
       await sleep(2)
