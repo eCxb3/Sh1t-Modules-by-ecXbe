@@ -12,7 +12,7 @@ from aiogram.types import (
 from pyrogram import Client, types
 from .. import loader, utils, inline
 
-@loader.module(name="Example", author="sh1tn3t", version=1)
+@loader.module(name="TEST", author="ecXbe")
 class ExampleMod(loader.Module):
   
   """dsfa"""
@@ -22,7 +22,7 @@ class ExampleMod(loader.Module):
     """ТЕСТ МОИХ МОДУЛЕЙ"""
     
     if args:
-      count = message.split(' ') # -fc 10 hi 78 hello
+      count = message.text.split(' ')
       await utils.answer(message, len(count) + 1)
     else:
       await utils.answer(message, 'Нет аргументов')
