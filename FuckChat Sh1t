@@ -1,0 +1,53 @@
+
+
+from asyncio import sleep
+
+from aiogram.types import (
+    InlineQuery,
+    CallbackQuery,
+    InlineQueryResultArticle,
+    InputTextMessageContent,
+    InlineKeyboardMarkup,
+    InlineKeyboardButton
+)
+
+from pyrogram import Client, types
+from .. import loader, utils, inline
+
+
+@loader.module(name="FuckChat", author="Unknown, moved to Sh1t by ecXbe")
+async def fc_cmd(self, app: Client, message: types.Message):
+		"""-fc <Количество заёба> <reply to text/text>
+		    Заебать чат (СРЁТ В ЛОГИ)
+		"""
+		reply = await message.get_reply_message()
+		repeat = 0
+		text = ""
+		if reply:
+			if utils.get_args_raw(message):
+				try:
+					if(reply.text):
+						text = reply.text
+						repeat = int(utils.get_args_raw(message))
+					else:
+						await utils.anwer(message, "Текста нет!")
+						return
+				except:
+					return
+			else:
+				await utils.answer(message, "А скольо раз надо?")
+				return
+		elif utils.get_args_raw(message):
+			try:
+				repeat = int(utils.get_args_raw(message).split(" ")[0])
+				text = message.text.replace("-fc "+str(repeat), "")
+			except:
+				return
+		else:
+			await utils.answer(message, "А как же текст/реплай на текст?")
+			return
+		await message.delete()
+		for i in range(repeat):
+			m = await app.send_message(message.to_id, text)
+			await m.delete()
+			sleep(0.1)
