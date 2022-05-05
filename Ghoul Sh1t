@@ -41,7 +41,7 @@ class GhoulMod(loader.Module):
         """Я гуль множеством сразу удаляемыемых сообщений"""
         
         await utils.answer(message, 'Я гуль')
-        sleep(2)
+        await sleep(2)
         a = 1000
         while a > 0:
             c = a - 7
