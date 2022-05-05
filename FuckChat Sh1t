@@ -16,38 +16,46 @@ from .. import loader, utils, inline
 
 
 @loader.module(name="FuckChat", author="Unknown, moved to Sh1t by ecXbe")
+def __init__(self):
+	self.name = self.strings['name']
+	self._me = None
+	self._ratelimit = []
+async def client_ready(self, client, db):
+	self._db = db
+	self._client = client
+	self.me = await client.get_me()
 async def fc_cmd(self, app: Client, message: types.Message):
-		"""-fc <Количество заёба> <reply to text/text>
-		    Заебать чат (СРЁТ В ЛОГИ)
-		"""
-		reply = await message.get_reply_message()
-		repeat = 0
-		text = ""
-		if reply:
-			if utils.get_args_raw(message):
-				try:
-					if(reply.text):
-						text = reply.text
-						repeat = int(utils.get_args_raw(message))
-					else:
-						await utils.anwer(message, "Текста нет!")
-						return
-				except:
-					return
-			else:
-				await utils.answer(message, "А скольо раз надо?")
-				return
-		elif utils.get_args_raw(message):
+	"""-fc <Количество заёба> <reply to text/text>
+	    Заебать чат (СРЁТ В ЛОГИ)
+	"""
+	reply = await message.get_reply_message()
+	repeat = 0
+	text = ""
+	if reply:
+		if utils.get_args_raw(message):
 			try:
-				repeat = int(utils.get_args_raw(message).split(" ")[0])
-				text = message.text.replace("-fc "+str(repeat), "")
+				if(reply.text):
+					text = reply.text
+					repeat = int(utils.get_args_raw(message))
+				else:
+					await utils.anwer(message, "Текста нет!")
+					return
 			except:
 				return
 		else:
-			await utils.answer(message, "А как же текст/реплай на текст?")
+			await utils.answer(message, "А скольо раз надо?")
 			return
-		await message.delete()
-		for i in range(repeat):
-			m = await app.send_message(message.to_id, text)
-			await m.delete()
-			sleep(0.1)
+	elif utils.get_args_raw(message):
+		try:
+			repeat = int(utils.get_args_raw(message).split(" ")[0])
+			text = message.text.replace("-fc "+str(repeat), "")
+		except:
+			return
+	else:
+		await utils.answer(message, "А как же текст/реплай на текст?")
+		return
+	await message.delete()
+	for i in range(repeat):
+		m = await app.send_message(message.to_id, text)
+		await m.delete()
+		sleep(0.1)
