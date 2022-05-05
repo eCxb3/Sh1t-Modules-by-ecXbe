@@ -23,7 +23,7 @@ async def client_ready(self, client, db):
 	self._db = db
 	self._client = client
 	self.me = await client.get_me()
-async def fc_cmd(self, app: Client, message: types.Message):
+async def fc_cmd(self, app: Client, message: types.Message, args: str):
 	"""-fc <Количество заёба> <reply to text/text>
 	    Заебать чат (СРЁТ В ЛОГИ)
 	"""
