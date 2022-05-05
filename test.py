@@ -23,6 +23,6 @@ class ExampleMod(loader.Module):
     
     if args:
       count = message.split(' ') # -fc 10 hi 78 hello
-      utils.answer(message, len(count) + 1)
+      await utils.answer(message, len(count) + 1)
     else:
-      utils.answer(message, 'Нет аргументов')
+      await utils.answer(message, 'Нет аргументов')
