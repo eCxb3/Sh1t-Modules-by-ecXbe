@@ -17,7 +17,9 @@ class ExampleMod(loader.Module):
   
   """dsfa"""
   
-  async def testex_cmd(self, app: Client, message: types.Message, args: str)
+  async def testex_cmd(self, app: Client, message: types.Message, args: str):
+  
+    """ТЕСТ МОИХ МОДУЛЕЙ"""
     
     if args:
       count = message.split(' ') # -fc 10 hi 78 hello
