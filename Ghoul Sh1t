@@ -1,0 +1,52 @@
+from asyncio import sleep
+
+from pyrogram import Client, types
+from .. import loader, utils
+
+@loader.module(name="Ghoul", author="ecXbe")
+class GhoulMod(loader.Module):
+
+    """Я гуль"""
+    
+    async def ghoulom_cmd(self, app: Client, message: types.Message):
+    
+      """Гуль одним сообщеением"""
+      
+      await utils.answer(message, 'Я гуль')
+      await sleep(2)
+      a = 1000
+      while a > 0:
+        c = a - 7
+        await utils.answer(message, str(a) + " - 7 = " + str(c))
+        a = c
+        await sleep(0.1)
+      await utils.answer(message, 'l l let me die')
+      
+    async def ghoulmm_cmd(self, app: Client, message: types.Message):
+        
+        """Я гуль множеством сообщений"""
+        
+        await utils.answer(message, 'Я гуль')
+        await sleep(2)
+        a = 1000
+        while a > 0:
+            c = a - 7
+            await app.send_message(message.chat.id, str(a) + " - 7 = " + str(c))
+            a = c
+            await sleep(0.1)
+        await app.send_message(message.chat.id, 'l l let me die')
+        
+    async def ghoulmmd_cmd(self, app: Client, message: types.Message):
+        
+        """Я гуль множеством сразу удаляемыемых сообщений"""
+        
+        await utils.answer(message, 'Я гуль')
+        sleep(2)
+        a = 1000
+        while a > 0:
+            c = a - 7
+            d = await app.send_message(message.chat.id, str(a) + " - 7 = " + str(c))
+            a = c
+            await sleep(0.4)
+            await d.delete()
+        await app.send_message(message.chat.id, 'l l let me die')
