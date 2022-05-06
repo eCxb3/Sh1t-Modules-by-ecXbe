@@ -23,6 +23,6 @@ class ExampleMod(loader.Module):
     
     if args:
         args_ = args.split()
-        await utils.answer(message, args_)
+        await app.send_message(message, args_)
     else:
         await utils.answer(message, 'Нет аргументов')
