@@ -23,6 +23,7 @@ class ExampleMod(loader.Module):
     
     if args:
         args_ = args.split()
-        await app.send_message(message.chat.id, args_)
+        for _ in range(int(args_[0])):
+            await app.send_message(message.chat.id, args_[1])
     else:
         await utils.answer(message, 'Нет аргументов')
