@@ -22,7 +22,7 @@ class ExampleMod(loader.Module):
     """ТЕСТ МОИХ МОДУЛЕЙ"""
     
     if args:
-      count = message.text.split(' ')
-      await utils.answer(message, len(count) + 1)
+        args_ = args.split(maxsplit(1))
+        await utils.answer(message, args_)
     else:
-      await utils.answer(message, 'Нет аргументов')
+        await utils.answer(message, 'Нет аргументов')
