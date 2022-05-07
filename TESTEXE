@@ -22,12 +22,6 @@ class ExampleMod(loader.Module):
     """ТЕСТ МОИХ МОДУЛЕЙ"""
     
     if args:
-        args_ = args.split()
-        for _ in range(int(args_[0])):
-            await app.send_message(message.chat.id, args_[1])
+        app.send_message(message.chat.id, args)
     else:
         await utils.answer(message, 'Нет аргументов')
-
-    async def watcher(self, app: Client, message: types.Message):
-        return await message.reply(
-            "И тебе привет!")
