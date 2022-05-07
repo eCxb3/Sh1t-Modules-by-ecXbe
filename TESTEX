@@ -22,6 +22,6 @@ class ExampleMod(loader.Module):
     """ТЕСТ МОИХ МОДУЛЕЙ"""
     
     if args:
-        app.send_message(message.chat.id, args)
+        await app.send_message(message.chat.id, args)
     else:
         await utils.answer(message, 'Нет аргументов')
