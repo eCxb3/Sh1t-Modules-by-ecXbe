@@ -26,7 +26,7 @@ class ExampleMod(loader.Module):
         slide1 = args.split("<slide1>")
         slide1 = slide1[1].split("</slide1>")
         slide1 = slide1[0]
-        text = slide1.split("<text pos="auto">")
+        text = slide1.split("<text pos=\"auto\">")
         text = text[1].split(</text>)
         text = text[0]
         await app.send_message(message.chat.id, "Презинтация:\nСлайд1:\ntext = " + text + "\nphoto = Рандомное фото по тексту Fisting")
