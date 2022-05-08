@@ -28,4 +28,4 @@ class SwitcherMod(loader.Module):
         text = str.translate(args, change)
         return await utils.answer(message, text)
       else:
-        return await utils.answer(message, """Нет реплая и аргумента, использование -switch <replay/text>""")
+        return await utils.answer(message, """Нет реплая и аргумента, использование -switch replay/text""")
