@@ -1,6 +1,6 @@
 from asyncio import sleep
 import json, io, re
-import urllib.parse
+from urllib.parse import urlsplit, parse_qs
 
 from requests import head,get
 from pyrogram import Client, types
