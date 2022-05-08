@@ -13,9 +13,9 @@ class SwitcherMod(loader.Module):
     
     reply = message.reply_to_message
     if reply:
-      utils.answer(message, reply)
+      await utils.answer(message, reply)
     else:
       if args:
-        utils.answer(message. args)
+        await utils.answer(message. args)
       else:
         return utils.answer(message, 'Нет реплая и аргумента,   использование -switch <replay/text>')
