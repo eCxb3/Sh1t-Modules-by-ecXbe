@@ -8,6 +8,8 @@ class NotesMod(loader.Module):
   """Ржач полнейший, использовать -haha <кол-во/random>"""
   
   async def haha_cmd(self, app: Client, message: types.Message, args: str):
+    reply = message.reply_to_message
+    message.delete()
     hah = ['п', 'х', 'а', 'в', 'ф', 'ы'] # 22
     if args:
       if args.isdigit():
