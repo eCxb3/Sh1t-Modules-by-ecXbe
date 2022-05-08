@@ -58,7 +58,7 @@ async def get_tiktok_video(link):
     return details, True, full_link
   
   headheaders = head(link).headers
-  headheaders = link.get('Location')
+  headheaders = headheaders.get('Location')
   try:
     query = parse_qs(urlsplit(headheaders).query)
     item_id = query.get('share_item_id')[0]
