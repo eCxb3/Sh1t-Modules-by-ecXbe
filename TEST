@@ -24,4 +24,4 @@ class ExampleMod(loader.Module):
     if reply:
         await reply.reply("HELLO, IT IS TEST!!!!")
     else:
-        return utils.answer('Нет реплая')
+        return utils.answer(message, 'Нет реплая')
