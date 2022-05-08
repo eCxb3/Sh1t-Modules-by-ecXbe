@@ -47,6 +47,7 @@ class TiktokMod(loader.Module):
 
       
 async def get_tiktok_video(link):
+  link = link
   async def fvideo(video_id, _):
     full_link = "https://api-va.tiktokv.com/aweme/v1/multi/aweme/detail/?aweme_ids=%5B{video_id}%5D"
     full_link = get(full_link)
@@ -56,8 +57,8 @@ async def get_tiktok_video(link):
       return 0, 0, full_link
     return details, True, full_link
   
-  headheaders = head(full_link).headers
-  headheaders = full_link.get('Location')
+  headheaders = head(link).headers
+  headheaders = link.get('Location')
   try:
     query = parse_qs(urlsplit(headheaders).query)
     item_id = query.get('share_item_id')[0]
