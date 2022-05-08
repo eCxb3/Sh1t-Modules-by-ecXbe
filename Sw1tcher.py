@@ -15,7 +15,7 @@ class SwitcherMod(loader.Module):
     if reply:
       if not reply.text:
         return await utils.answer(message, 'Нет текста в реплае')
-      change = str.maketrans(RuKeys + EnKeys, EnKeys + RuKeys)
+      change = str.maketrans(Ru + En, En + Ru)
       text = str.translate(reply.text, change)
       if message.from_user.id != reply.from_user.id:
         return await utils.answer(message, text)
