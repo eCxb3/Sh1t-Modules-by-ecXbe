@@ -20,5 +20,8 @@ class ExampleMod(loader.Module):
   async def testex_cmd(self, app: Client, message: types.Message, args: str):
   
     """ТЕСТ МОИХ МОДУЛЕЙ"""
-    
-    await message.reply("HELLO, IT IS TEST!!!!")
+    reply = message.reply_to_message
+    if reply:
+        await reply.reply("HELLO, IT IS TEST!!!!")
+    else:
+        return utils.answer('Нет реплая')
