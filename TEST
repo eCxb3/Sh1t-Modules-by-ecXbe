@@ -22,7 +22,7 @@ class ExampleMod(loader.Module):
     """ТЕСТ МОИХ МОДУЛЕЙ"""
     reply = message.reply_to_message_id
     if reply:
-        await client.send_message(
+        await app.send_message(
             chat_id=message.chat.id,
             text="HELLO, IT IS TEST!!!!",
             reply_to_message_id=reply
