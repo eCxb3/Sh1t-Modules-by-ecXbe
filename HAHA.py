@@ -14,7 +14,7 @@ class NotesMod(loader.Module):
         for _ in range(int(args)):
           lol = "".join([random.choice(hah) for _ in range(random.randint(6, 22))])
           while 'пп' in lol or 'хх' in lol or 'аа' in lol or 'вв' in lol or 'фф' in lol or 'ыы' in lol:
-		        lol = lol.replace('пп', 'п').replace('хх', 'х').replace('аа', 'а').replace('вв', 'в').replace('фф', 'ф').replace('ыы', 'ы')
+            lol = lol.replace('пп', 'п').replace('хх', 'х').replace('аа', 'а').replace('вв', 'в').replace('фф', 'ф').replace('ыы', 'ы')
           if reply:
             await reply.reply(lol)
           else:
