@@ -11,7 +11,7 @@ class TiktokMod(loader.Module):
   
   """Скачивает видео с тик ток"""
   
-  async def tiktok_cmd(self, app: Client, message: types.Message, args: str)
+  async def tiktok_cmd(self, app: Client, message: types.Message, args: str):
     
     """Использовать -tiktok <ссылка на видео>"""
     
