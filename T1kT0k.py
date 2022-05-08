@@ -25,7 +25,7 @@ class TiktokMod(loader.Module):
       
       try:
         await message.delete()
-        await app.send_file(message.chat.id, file=G)
+        await app.send_video(message.chat.id, video=G)
       except:
         try:
           await utils.answer(message, '⬇️ Скачивание')
@@ -34,7 +34,7 @@ class TiktokMod(loader.Module):
           E.name = 'video.mp4'
           E.seek(0)
           await message.delete()
-          await app.send_message(message.chat.id, file=E)
+          await app.send_video(message.chat.id, video=E)
         except:
           return await utils.answer(message, '❌ Я не могу скачать это видео')
     else:
