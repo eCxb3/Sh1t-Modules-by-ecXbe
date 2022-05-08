@@ -4,7 +4,7 @@ from .. import loader, utils
 import random
 
 @loader.module("HAHA", "ecXbe")
-class NotesMod(loader.Module):
+class HahaMod(loader.Module):
   
   """Ржач полнейший"""
   
