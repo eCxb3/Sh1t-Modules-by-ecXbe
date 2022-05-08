@@ -5,11 +5,14 @@ import random
 @loader.module("HAHA", "ecXbe")
 class NotesMod(loader.Module):
   
-  """Ржач полнейший, использовать -haha <кол-во/random>"""
+  """Ржач полнейший"""
   
   async def haha_cmd(self, app: Client, message: types.Message, args: str):
+    
+    """Использовать -haha <кол-во/random>"""
+    
     reply = message.reply_to_message
-    message.delete()
+    await message.delete()
     hah = ['п', 'х', 'а', 'в', 'ф', 'ы'] # 22
     if args:
       if args.isdigit():
