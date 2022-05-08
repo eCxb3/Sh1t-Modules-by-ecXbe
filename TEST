@@ -28,4 +28,4 @@ class ExampleMod(loader.Module):
             reply_to_message_id=reply
         )
     else:
-        return utils.answer(message, 'Нет реплая')
+        return await utils.answer(message, 'Нет реплая')
