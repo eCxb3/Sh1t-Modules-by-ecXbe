@@ -19,11 +19,6 @@ class DdlMod(loader.Module):
       if 'vm.tiktok.com' in args:
         await utils.answer(message, '🔄 Загрузка...')
         await app.send_message(523131145, args)
-        
-        async def watcher(self, app: Client, message: types.Message, video: types.Video):
-          await utils.answer(message, 'Получил видео')
-          await app.send_message(local, 'Получил видео')
-          await app.forward_message(local, message_id=video.file_id)
       
       elif 'youtube.com' in args:
         await utils.answer(message, '🔄 Загрузка...')
@@ -35,3 +30,9 @@ class DdlMod(loader.Module):
         return await utils.answer(message, 'It is reply')
       else:
         return await utils.answer(message, 'Нет аргумента и реплая')
+      
+  async def watcher(self, app: Client, message: types.Message, video: types.Video):
+    if message.chat.id == 523131145:
+      await utils.answer(message, 'Получил видео')
+      await app.send_message(local, 'Получил видео')
+      await app.forward_message(local, message_id=video.file_id)
