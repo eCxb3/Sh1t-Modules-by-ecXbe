@@ -30,7 +30,7 @@ class DdlMod(loader.Module):
           await conv.ask(args)
           response = await conv.get_response()
           print(response)
-          await response.forward(local)
+          await app.send_video(local, str(response.video.file_id))
         
       else:
         return await utils.answer(message, 'Неподоходящая ссылка')
