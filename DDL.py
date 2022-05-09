@@ -32,7 +32,7 @@ class DdlMod(loader.Module):
         response = await conv.get_response()
         await message.delete()
         await app.send_video(local, str(response.video.file_id))
-    elif 'youtube.com' in link:
+    elif 'youtube.com' in link or 'youtu.be' in link:
       await utils.answer(message, '🔄 Загрузка...')
         
       async with fsm.Conversation(app, "@youtubednbot", True) as conv:
