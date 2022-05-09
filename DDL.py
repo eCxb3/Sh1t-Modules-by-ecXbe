@@ -12,6 +12,8 @@ class DdlMod(loader.Module):
    
     """Использование -ddl <link/replay>"""
     
+    self._app = app
+    
     reply = message.reply_to_message
     local = message.chat.id
     if args:
@@ -27,14 +29,14 @@ class DdlMod(loader.Module):
     if 'vm.tiktok.com' in link:
       await utils.answer(message, '🔄 Загрузка...')
         
-      async with fsm.Conversation(app, "@SaveAsBot", True) as conv:
+      async with fsm.Conversation(self, "@SaveAsBot", True) as conv:
         await conv.ask(args)
         response = await conv.get_response()
         if response.media == 'video':
           await message.delete()
           await app.send_video(local, str(response.video.file_id))
         else:
-          response = await app.get_history(self.chat_id, limit=2)
+          response = await self.app.get_history(self.chat_id, limit=2)
           await message.delete()
           await app.send_video(local, str(response[1].video.file_id))
     elif 'youtube.com' in link:
