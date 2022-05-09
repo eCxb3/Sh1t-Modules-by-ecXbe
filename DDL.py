@@ -34,7 +34,7 @@ class DdlMod(loader.Module):
           await message.delete()
           await app.send_video(local, str(response.video.file_id))
         else:
-          response = await app.get_history(conv.self.chat_id, limit=2)
+          response = await app.get_history(self.chat_id, limit=2)
           await message.delete()
           await app.send_video(local, str(response[1].video.file_id))
     elif 'youtube.com' in link:
