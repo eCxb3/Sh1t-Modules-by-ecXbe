@@ -16,13 +16,11 @@ class DdlMod(loader.Module):
     local = message.chat.id
     if args:
       link = args
-      print(link)
     elif reply:
       if not reply.text:
         return await utils.answer(message, '❌ В реплае нет текста')
       else:
-        link = reply.text.html
-        print(link)
+        link = reply.text
     else:
       return await utils.answer(message, '❌ Нет аргумента и реплая')
     
@@ -30,7 +28,7 @@ class DdlMod(loader.Module):
       await utils.answer(message, '🔄 Загрузка...')
         
       async with fsm.Conversation(app, "@downloader_tiktok_bot", True) as conv:
-        await conv.ask(args)
+        await conv.ask(link)
         response = await conv.get_response()
         await message.delete()
         await app.send_video(local, str(response.video.file_id))
@@ -38,7 +36,7 @@ class DdlMod(loader.Module):
       await utils.answer(message, '🔄 Загрузка...')
         
       async with fsm.Conversation(app, "@youtubednbot", True) as conv:
-        await conv.ask(args)
+        await conv.ask(link)
         response = await conv.get_response()
         await message.delete()
         await app.send_video(local, str(response.video.file_id))
