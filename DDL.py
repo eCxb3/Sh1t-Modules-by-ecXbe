@@ -15,32 +15,32 @@ class DdlMod(loader.Module):
     reply = message.reply_to_message
     local = message.chat.id
     if args:
-      if 'vm.tiktok.com' in args:
-        await utils.answer(message, '🔄 Загрузка...')
-        
-        async with fsm.Conversation(app, "@SaveAsBot", True) as conv:
-          await conv.ask(args)
-          response = await conv.get_response()
-          if response.media == 'video':
-            await message.delete()
-            await app.send_video(local, str(response.video.file_id))
-          else:
-            response = await self.app.get_history(self.chat_id, limit=2)
-            message.delete()
-            await app.send_video(local, str(response[1].video.file_id))
-      elif 'youtube.com' in args:
-        await utils.answer(message, '🔄 Загрузка...')
-        
-        async with fsm.Conversation(app, "@youtubednbot", True) as conv:
-          await conv.ask(args)
-          response = await conv.get_response()
-          await message.delete()
-          await app.send_video(local, str(response.video.file_id))
-        
+      link = args
+    elif reply:
+      if not reply.text:
+        return await utils.answer(message, 'В реплае нет текста')
       else:
-        return await utils.answer(message, 'Ссылка не найдена')
+        link = reply.text
     else:
-      if reply:
-        return await utils.answer(message, 'It is reply')
-      else:
-        return await utils.answer(message, 'Нет аргумента и реплая')
+      return await utils.answer(message, 'Нет аргумента и реплая')
+    
+    if 'vm.tiktok.com' in link:
+      await utils.answer(message, '🔄 Загрузка...')
+        
+      async with fsm.Conversation(app, "@SaveAsBot", True) as conv:
+        await conv.ask(args)
+        response = await conv.get_response()
+        if response.media == 'video':
+          await utils.answer(message, str(response.video.file_id))
+        else:
+          response = await self.app.get_history(self.chat_id, limit=2)
+          await utils.answer(message, str(response[1].video.file_id))
+    elif 'youtube.com' in link:
+      await utils.answer(message, '🔄 Загрузка...')
+        
+      async with fsm.Conversation(app, "@youtubednbot", True) as conv:
+        await conv.ask(args)
+        response = await conv.get_response()
+        await utils.answer(message, str(response.video.file_id))
+    else:
+      return await utils.answer(message, 'Ссылка не найдена')
