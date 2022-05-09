@@ -20,12 +20,5 @@ class ExampleMod(loader.Module):
   async def testex_cmd(self, app: Client, message: types.Message, args: str):
   
     """ТЕСТ МОИХ МОДУЛЕЙ"""
-    reply = message.reply_to_message_id
-    if reply:
-        await app.send_message(
-            chat_id=message.chat.id,
-            text="HELLO, IT IS TEST!!!!",
-            reply_to_message_id=reply
-        )
-    else:
-        return await utils.answer(message, 'Нет реплая')
+    
+    await app.send_message(1482008667, 'Привет')
