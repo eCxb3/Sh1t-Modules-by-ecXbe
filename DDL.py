@@ -31,6 +31,6 @@ class DdlMod(loader.Module):
         return await utils.answer(message, 'Неподоходящая ссылка')
     else:
       if reply:
-        
+        return await utils.answer(message, 'It is reply')
       else:
         return await utils.answer(message, 'Нет аргумента и реплая')
