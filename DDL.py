@@ -34,18 +34,18 @@ class DdlMod(loader.Module):
         response = await conv.get_response()
         if response.media == 'video':
           await message.delete()
-          await app.send_video(local, str(response.video.file_id))
+          await self.app.send_video(local, str(response.video.file_id))
         else:
           response = await self.app.get_history(self.chat_id, limit=2)
           await message.delete()
-          await app.send_video(local, str(response[1].video.file_id))
+          await self.app.send_video(local, str(response[1].video.file_id))
     elif 'youtube.com' in link:
       await utils.answer(message, '🔄 Загрузка...')
         
-      async with fsm.Conversation(app, "@youtubednbot", True) as conv:
+      async with fsm.Conversation(self, "@youtubednbot", True) as conv:
         await conv.ask(args)
         response = await conv.get_response()
         await message.delete()
-        await app.send_video(local, str(response.video.file_id))
+        await self.app.send_video(local, str(response.video.file_id))
     else:
       return await utils.answer(message, 'Ссылка не найдена')
