@@ -20,7 +20,7 @@ class DdlMod(loader.Module):
         await utils.answer(message, '🔄 Загрузка...')
         await app.send_message(523131145, args)
         
-        async def watcher(self, app: Client, video: types.Video):
+        async def watcher(self, app: Client, message: types.Message, video: types.Video):
             await message.reply_video(local, str(video.file_id))
       
       elif 'youtube.com' in args:
