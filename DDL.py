@@ -22,14 +22,14 @@ class DdlMod(loader.Module):
       if not reply.text:
         return await utils.answer(message, '❌ В реплае нет текста')
       else:
-        link = reply.text
+        link = reply.text.html
     else:
       return await utils.answer(message, '❌ Нет аргумента и реплая')
     
     if 'vm.tiktok.com' in link:
       await utils.answer(message, '🔄 Загрузка...')
         
-      async with fsm.Conversation(app, "@TIKTOKDOWNLOADROBOT", True) as conv:
+      async with fsm.Conversation(app, "@downloader_tiktok_bot", True) as conv:
         await conv.ask(args)
         response = await conv.get_response()
         await message.delete()
