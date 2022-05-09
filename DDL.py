@@ -12,12 +12,11 @@ class DdlMod(loader.Module):
    
     """Использование -ddl <link/replay>"""
     
-    self._app = app
-    
     reply = message.reply_to_message
     local = message.chat.id
     if args:
       link = args
+      print(link)
     elif reply:
       if not reply.text:
         return await utils.answer(message, '❌ В реплае нет текста')
@@ -27,7 +26,7 @@ class DdlMod(loader.Module):
     else:
       return await utils.answer(message, '❌ Нет аргумента и реплая')
     
-    if 'vm.tiktok.com' in link:
+    if 'tiktok.com' in link:
       await utils.answer(message, '🔄 Загрузка...')
         
       async with fsm.Conversation(app, "@downloader_tiktok_bot", True) as conv:
