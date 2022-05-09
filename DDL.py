@@ -20,25 +20,20 @@ class DdlMod(loader.Module):
       link = args
     elif reply:
       if not reply.text:
-        return await utils.answer(message, 'В реплае нет текста')
+        return await utils.answer(message, '❌ В реплае нет текста')
       else:
         link = reply.text
     else:
-      return await utils.answer(message, 'Нет аргумента и реплая')
+      return await utils.answer(message, '❌ Нет аргумента и реплая')
     
     if 'vm.tiktok.com' in link:
       await utils.answer(message, '🔄 Загрузка...')
         
-      async with fsm.Conversation(app, "@SaveAsBot", True) as conv:
+      async with fsm.Conversation(app, "@TIKTOKDOWNLOADROBOT", True) as conv:
         await conv.ask(args)
         response = await conv.get_response()
-        if response.media == 'video':
-          await message.delete()
-          await self.app.send_video(local, str(response.video.file_id))
-        else:
-          response = await self.app.get_chat_history(self.chat.id, limit=2)
-          await message.delete()
-          await self.app.send_video(local, str(response[1].video.file_id))
+        await message.delete()
+        await self.app.send_video(local, str(response.video.file_id))
     elif 'youtube.com' in link:
       await utils.answer(message, '🔄 Загрузка...')
         
@@ -48,4 +43,4 @@ class DdlMod(loader.Module):
         await message.delete()
         await self.app.send_video(local, str(response.video.file_id))
     else:
-      return await utils.answer(message, 'Ссылка не найдена')
+      return await utils.answer(message, '❌ Ссылка не найдена')
