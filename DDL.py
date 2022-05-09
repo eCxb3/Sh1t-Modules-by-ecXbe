@@ -13,23 +13,22 @@ class DdlMod(loader.Module):
     """Использование -ddl <link/replay>"""
     
     reply = message.reply_to_message
-    
+    local = message.chat.id
     if args:
-      local = message.chat.id
       if 'vm.tiktok.com' in args:
         await utils.answer(message, '🔄 Загрузка...')
         
         async with fsm.Conversation(app, "@SaveAsBot", True) as conv:
           await conv.ask(args)
           response = await conv.get_response()
-          await app.send_video(local, str(response.message_id)) 
+          await app.forward_message(local, message_id=response.message_id) 
       elif 'youtube.com' in args:
         await utils.answer(message, '🔄 Загрузка...')
         
         async with fsm.Conversation(app, "@youtubednbot", True) as conv:
           await conv.ask(args)
           response = await conv.get_response()
-          await app.send_video(local, str(response.message_id)) 
+          await app.forward_message(local, message_id=response.message_id)
         
       else:
         return await utils.answer(message, 'Неподоходящая ссылка')
