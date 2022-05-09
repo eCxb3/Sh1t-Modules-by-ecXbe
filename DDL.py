@@ -37,9 +37,6 @@ class DdlMod(loader.Module):
           response = await app.get_history(conv.self.chat_id, limit=2)
           await message.delete()
           await app.send_video(local, str(response[1].video.file_id))
-        md = await app.get_history(conv.self.chat_id, limit=2)
-        await md[0].delete
-        await md[1].delete
     elif 'youtube.com' in link:
       await utils.answer(message, '🔄 Загрузка...')
         
@@ -48,8 +45,5 @@ class DdlMod(loader.Module):
         response = await conv.get_response()
         await message.delete()
         await app.send_video(local, str(response.video.file_id))
-        md = await app.get_history(conv.self.chat_id, limit=2)
-        await md[0].delete
-        await md[1].delete
     else:
       return await utils.answer(message, 'Ссылка не найдена')
