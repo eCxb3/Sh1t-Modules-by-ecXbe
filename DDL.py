@@ -22,7 +22,7 @@ class DdlMod(loader.Module):
           await conv.ask(args)
           response = await conv.get_response()
           if response.media == 'video':
-            message.delete()
+            await message.delete()
             await app.send_video(local, str(response.video.file_id))
           else:
             response = await self.app.get_history(self.chat_id, limit=2)
@@ -34,7 +34,7 @@ class DdlMod(loader.Module):
         async with fsm.Conversation(app, "@youtubednbot", True) as conv:
           await conv.ask(args)
           response = await conv.get_response()
-          message.delete()
+          await message.delete()
           await app.send_video(local, str(response.video.file_id))
         
       else:
