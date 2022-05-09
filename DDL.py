@@ -18,15 +18,15 @@ class DdlMod(loader.Module):
       local = message.chat.id
       if 'vm.tiktok.com' in args:
         await utils.answer(message, '🔄 Загрузка...')
-        app.send_message(523131145, args)
+        await app.send_message(523131145, args)
         
         async def watcher(self, app: Client, message: types.Message):
           if message.video:
-            message.reply(local)
+            await message.reply(local)
       
       elif 'youtube.com' in args:
         await utils.answer(message, '🔄 Загрузка...')
-        app.send_message(1482008667, args)
+        await app.send_message(1482008667, args)
       else:
         return await utils.answer(message, 'Неподоходящая ссылка')
     else:
