@@ -22,7 +22,8 @@ class DdlMod(loader.Module):
         async with fsm.Conversation(app, "@SaveAsBot", True) as conv:
           await conv.ask(args)
           response = await conv.get_response()
-          await app.send_video(local, str(response.id)) 
+          print(response)
+          await app.send_video(local, str(response)) 
       elif 'youtube.com' in args:
         await utils.answer(message, '🔄 Загрузка...')
         await app.send_message(1482008667, args)
