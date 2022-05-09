@@ -25,7 +25,12 @@ class DdlMod(loader.Module):
           await app.send_video(local, str(response.message_id)) 
       elif 'youtube.com' in args:
         await utils.answer(message, '🔄 Загрузка...')
-        await app.send_message(1482008667, args)
+        
+        async with fsm.Conversation(app, "@youtubednbot", True) as conv:
+          await conv.ask(args)
+          response = await conv.get_response()
+          await app.send_video(local, str(response.message_id)) 
+        
       else:
         return await utils.answer(message, 'Неподоходящая ссылка')
     else:
