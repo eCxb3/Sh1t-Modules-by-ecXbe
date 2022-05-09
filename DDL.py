@@ -29,7 +29,7 @@ class DdlMod(loader.Module):
     if 'vm.tiktok.com' in link:
       await utils.answer(message, '🔄 Загрузка...')
         
-      async with fsm.Conversation(self, "@SaveAsBot", True) as conv:
+      async with fsm.Conversation(app, "@SaveAsBot", True) as conv:
         await conv.ask(args)
         response = await conv.get_response()
         if response.media == 'video':
@@ -42,7 +42,7 @@ class DdlMod(loader.Module):
     elif 'youtube.com' in link:
       await utils.answer(message, '🔄 Загрузка...')
         
-      async with fsm.Conversation(self, "@youtubednbot", True) as conv:
+      async with fsm.Conversation(app, "@youtubednbot", True) as conv:
         await conv.ask(args)
         response = await conv.get_response()
         await message.delete()
