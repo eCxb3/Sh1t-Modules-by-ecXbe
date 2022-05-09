@@ -33,6 +33,7 @@ class DdlMod(loader.Module):
       
   async def watcher(self, app: Client, message: types.Message, video: types.Video):
     if message.chat.id == 523131145:
+      global local
       await utils.answer(message, 'Получил видео')
       await app.send_message(local, 'Получил видео')
       await app.forward_message(local, message_id=video.file_id)
