@@ -19,7 +19,7 @@ class DdlMod(loader.Module):
       if 'vm.tiktok.com' in args:
         await utils.answer(message, '🔄 Загрузка...')
         
-        async with fsm.Conversation(self._app, "@SaveAsBot", True) as conv:
+        async with fsm.Conversation(app, "@SaveAsBot", True) as conv:
           await conv.ask(args)
           response = await conv.get_response()
           return response
