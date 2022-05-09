@@ -23,6 +23,7 @@ class DdlMod(loader.Module):
         return await utils.answer(message, '❌ В реплае нет текста')
       else:
         link = reply.text.html
+        print(link)
     else:
       return await utils.answer(message, '❌ Нет аргумента и реплая')
     
