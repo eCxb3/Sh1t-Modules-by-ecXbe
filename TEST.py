@@ -38,7 +38,7 @@ class ExampleMod(loader.Module):
         )
 
     @loader.on_bot(lambda self, app, call: call.data == "ghoul_button_callback")
-    async def example_callback_handler(self, app: Client, call: CallbackQuery, message: types.Message):
+    async def example_callback_handler(self, app: Client, message: types.Message, call: CallbackQuery):
 
         """Кто нажмёт, тому пизда"""
         user_id = message.chat.id
