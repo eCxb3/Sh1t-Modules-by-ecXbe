@@ -11,6 +11,7 @@ class SwitcherMod(loader.Module):
     Ru = """ёйцукенгшщзхъфывапролджэячсмитьбю.Ё"№;%:?ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭ/ЯЧСМИТЬБЮ,"""
     En = """`qwertyuiop[]asdfghjkl;'zxcvbnm,./~@#$%^&QWERTYUIOP{}ASDFGHJKL:"|ZXCVBNM<>?"""
     
+    chat = message.chat
     if chat.type == 'channel':
       return await utils.answer(message, '❌ Это канал')
     
