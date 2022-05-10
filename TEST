@@ -20,7 +20,7 @@ class ExampleMod(loader.Module):
   async def ghoul_inline_handler(self, app: Client, inline_query: InlineQuery, args: str):
   
         """Гуль"""
-        
+        local = message.chat.id
         await inline_query.answer(
             [
                 InlineQueryResultArticle(
@@ -43,12 +43,12 @@ class ExampleMod(loader.Module):
 
             """Пример каллбека"""
 
-            await app.send_message(message.chat.id, 'Я гуль')
+            await app.send_message(local, 'Я гуль')
             await sleep(2)
             a = 1000
             while a > 0:
                 c = a - 7
-                await app.send_message(message.chat.id, str(a) + " - 7 = " + str(c))
+                await app.send_message(local, str(a) + " - 7 = " + str(c))
                 a = c
                 await sleep(0.1)
-            await app.send_message(message.chat.id, 'l l let me die')
+            await app.send_message(local, 'l l let me die')
