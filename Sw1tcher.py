@@ -11,10 +11,13 @@ class SwitcherMod(loader.Module):
     Ru = """ёйцукенгшщзхъфывапролджэячсмитьбю.Ё"№;%:?ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭ/ЯЧСМИТЬБЮ,"""
     En = """`qwertyuiop[]asdfghjkl;'zxcvbnm,./~@#$%^&QWERTYUIOP{}ASDFGHJKL:"|ZXCVBNM<>?"""
     
+    if chat.type == 'channel':
+      return await utils.answer(message, '❌ Это канал')
+    
     reply = message.reply_to_message
     if reply:
       if not reply.text:
-        return await utils.answer(message, 'Нет текста в реплае')
+        return await utils.answer(message, '❌ Нет текста в реплае')
       change = str.maketrans(Ru + En, En + Ru)
       text = str.translate(reply.text, change)
       if message.from_user.id != reply.from_user.id:
@@ -28,4 +31,4 @@ class SwitcherMod(loader.Module):
         text = str.translate(args, change)
         return await utils.answer(message, text)
       else:
-        return await utils.answer(message, """Нет реплая и аргумента, использование -switch replay/text""")
+        return await utils.answer(message, """❌ Нет реплая и аргумента, использование -switch replay/text""")
