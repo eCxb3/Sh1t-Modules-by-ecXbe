@@ -38,11 +38,11 @@ class ExampleMod(loader.Module):
         )
 
     @loader.on_bot(lambda self, app, call: call.data == "ghoul_button_callback")
-    async def ghoul_callback_handler(self, app: Client, call: CallbackQuery, message: types.Message):
+    async def ghoul_callback_handler(self, app: Client, call: CallbackQuery):
 
         """Кто нажмёт, тому пизда"""
-        user_id = message.chat.id
-        await call.app.send_message(user_id, 'Я гуль')
+        user_id = call.chat.id
+        await app.send_message(user_id, 'Я гуль')
         await sleep(2)
         a = 1000
         while a > 0:
@@ -50,4 +50,4 @@ class ExampleMod(loader.Module):
             await call.app.send_message(user_id, str(a) + " - 7 = " + str(c))
             a = c
             await sleep(0.1)
-        await call.app.send_message(user_id, 'l l let me die')
+        await app.send_message(user_id, 'l l let me die')
