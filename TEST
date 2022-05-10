@@ -17,8 +17,37 @@ class ExampleMod(loader.Module):
   
   """dsfa"""
   
-  async def testex_cmd(self, app: Client, message: types.Message, args: str):
+  async def ghoul_inline_handler(self, app: Client, inline_query: InlineQuery, args: str):
   
-    """ТЕСТ МОИХ МОДУЛЕЙ"""
-    
-    await app.send_message(1482008667, 'Привет')
+        """Гуль"""
+        
+        await inline_query.answer(
+            [
+                InlineQueryResultArticle(
+                    id=inline.result_id(),
+                    title="Ghoul",
+                    description="Запустить гуля" + (
+                        f" Аргументы: {args}" if args
+                        else ""
+                    ),
+                    input_message_content=InputTextMessageContent(
+                        "Нажми на кнопочку"),
+                    reply_markup=InlineKeyboardMarkup().add(
+                        InlineKeyboardButton("Запустить гуля", callback_data="example_button_callback"))
+                )
+            ]
+        )
+
+    @loader.on_bot(lambda self, app, call: call.data == "example_button_callback")  # Сработает только если каллбек дата равняется "example_button_callback"
+    async def ghoul_callback_handler(self, app: Client, call: CallbackQuery):  # _callback_handler на конце функции чтобы обозначить что это каллбек-хендлер
+        """Пример каллбека"""
+        
+        await app.send_message(message.chat.id, 'Я гуль')
+        await sleep(2)
+        a = 1000
+        while a > 0:
+            c = a - 7
+            await app.send_message(message.chat.id, str(a) + " - 7 = " + str(c))
+            a = c
+            await sleep(0.1)
+        await app.send_message(message.chat.id, 'l l let me die')
