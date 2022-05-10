@@ -43,7 +43,7 @@ class DdlMod(loader.Module):
         try:
           await conv.ask(link)
         except errors.UserIsBlocked:
-          await self._app.unblock_user("@downloader_tiktok_bot")
+          await self._app.unblock_user("@youtubednbot")
           await conv.ask(link)
         response = await conv.get_response()
         await message.delete()
