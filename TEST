@@ -17,7 +17,7 @@ class ExampleMod(loader.Module):
   
     """dsfa"""
 
-    async def ghoul_inline_handler(self, app: Client, message: types.Message, inline_query: InlineQuery, args: str):
+    async def ghoul_inline_handler(self, app: Client, inline_query: InlineQuery, args: str, message: types.Message):
 
         """Гуль"""
         local = message.chat.id
@@ -39,7 +39,7 @@ class ExampleMod(loader.Module):
         )
 
     @loader.on_bot(lambda self, app, call: call.data == "ghoul_button_callback")
-    async def example_callback_handler(self, app: Client, message: types.Message, call: CallbackQuery, inline_query: InlineQuery, args: str):
+    async def example_callback_handler(self, app: Client, call: CallbackQuery):
 
         """Кто нажмёт, тому пизда"""
         
