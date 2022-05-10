@@ -38,17 +38,17 @@ class ExampleMod(loader.Module):
             ]
         )
 
-        @loader.on_bot(lambda self, app, call: call.data == "ghoul_button_callback")
-        async def ghoul_callback_handler(self, app: Client, message: types.Message):
-        
-            """Я гуль множеством сообщений"""
+    @loader.on_bot(lambda self, app, call: call.data == "ghoul_button_callback")
+    async def ghoul_callback_handler(self, app: Client, message: types.Message):
 
-            await utils.answer(message, 'Я гуль')
-            await sleep(2)
-            a = 1000
-            while a > 0:
-                c = a - 7
-                await app.send_message(message.chat.id, str(a) + " - 7 = " + str(c))
-                a = c
-                await sleep(0.1)
-            await app.send_message(message.chat.id, 'l l let me die')
+        """Я гуль множеством сообщений"""
+
+        await utils.answer(message, 'Я гуль')
+        await sleep(2)
+        a = 1000
+        while a > 0:
+            c = a - 7
+            await app.send_message(message.chat.id, str(a) + " - 7 = " + str(c))
+            a = c
+            await sleep(0.1)
+        await app.send_message(message.chat.id, 'l l let me die')
