@@ -50,5 +50,5 @@ class ExampleMod(loader.Module):
             c = a - 7
             await call.answer(str(a) + " - 7 = " + str(c), show_alert=True)
             a = c
-            1`await sleep(0.1)
+            await sleep(0.1)
         await call.answer('l l let me die', show_alert=True)
