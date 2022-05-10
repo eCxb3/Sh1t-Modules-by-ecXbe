@@ -33,12 +33,12 @@ class ExampleMod(loader.Module):
                     input_message_content=InputTextMessageContent(
                         "Нажми на кнопочку"),
                     reply_markup=InlineKeyboardMarkup().add(
-                        InlineKeyboardButton("Запустить гуля", callback_data="example_button_callback"))
+                        InlineKeyboardButton("Запустить гуля", callback_data="ghoul_button_callback"))
                 )
             ]
         )
 
-    @loader.on_bot(lambda self, app, call: call.data == "example_button_callback")
+    @loader.on_bot(lambda self, app, call: call.data == "ghoul_button_callback")
     async def ghoul_callback_handler(self, app: Client, call: CallbackQuery):
     
         """Пример каллбека"""
