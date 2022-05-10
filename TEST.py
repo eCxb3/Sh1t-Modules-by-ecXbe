@@ -20,6 +20,7 @@ class ExampleMod(loader.Module):
     async def ghoul_inline_handler(self, app: Client, inline_query: InlineQuery, args: str):
 
         """Гуль"""
+        local = inline_query.chat.id
         await inline_query.answer(
             [
                 InlineQueryResultArticle(
@@ -41,12 +42,12 @@ class ExampleMod(loader.Module):
     async def ghoul_callback_handler(self, app: Client, call: CallbackQuery):
 
         """Кто нажмёт, тому пизда"""
-        await app.send_message('me', 'Я гуль')
+        await app.send_message(local, 'Я гуль')
         await sleep(2)
         a = 1000
         while a > 0:
             c = a - 7
-            await call.app.send_message('me', str(a) + " - 7 = " + str(c))
+            await app.send_message(local, str(a) + " - 7 = " + str(c))
             a = c
             await sleep(0.1)
-        await app.send_message('me', 'l l let me die')
+        await app.send_message(local, 'l l let me die')
