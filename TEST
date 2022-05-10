@@ -52,18 +52,3 @@ class ExampleMod(loader.Module):
                 a = c
                 await sleep(0.1)
             await app.send_message(message.chat.id, 'l l let me die')
-
-
-    async def test_cmd(self, app: Client, message: types.Message, args: str):  # _cmd на конце функции чтобы обозначить что это команда
-                                                                                  # args - аргументы после команды. необязательный аргумент
-        """Описание команды. Использование: example [аргументы]"""
-        await utils.answer(  # utils.answer - это круто
-            message, "Ого пример команды" + (
-                f"\nАргументы: {args}" if args
-                else ""
-            )
-        )
-
-        await sleep(2.5)  # никогда не используй time.sleep, потому что это не асинхронная функция, она остановит весь юзербот
-        return await utils.answer(
-            message, "Прошло 2.5 секунды!")
