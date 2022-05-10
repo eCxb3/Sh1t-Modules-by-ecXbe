@@ -38,16 +38,16 @@ class ExampleMod(loader.Module):
         )
 
     @loader.on_bot(lambda self, app, call: call.data == "ghoul_button_callback")
-    async def example_callback_handler(self, app: Client, call: CallbackQuery):
+    async def example_callback_handler(self, app: Client, call: CallbackQuery, message: types.Message):
 
         """Кто нажмёт, тому пизда"""
-        
-        await call.answer('Я гуль', show_alert=True)
+        user_id = message.chat.id
+        await app.send_message(user_id, 'Я гуль')
         await sleep(2)
         a = 1000
         while a > 0:
             c = a - 7
-            await call.answer(str(a) + " - 7 = " + str(c), show_alert=True)
+            await app.send_message(user_id, str(a) + " - 7 = " + str(c))
             a = c
             await sleep(0.1)
-        return await call.answer('l l let me die', show_alert=True)
+        await app.send_message(user_id, 'l l let me die')
