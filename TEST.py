@@ -42,7 +42,7 @@ class ExampleMod(loader.Module):
 
         """Кто нажмёт, тому пизда"""
         print(call)
-        await app.send_message(local, 'Я гуль')
+        await app.send_message(call.chat_instance, 'Я гуль')
         await sleep(2)
         a = 1000
         while a > 0:
