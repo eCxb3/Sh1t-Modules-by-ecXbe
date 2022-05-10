@@ -28,7 +28,11 @@ class DdlMod(loader.Module):
       await utils.answer(message, '🔄 Загрузка...')
         
       async with fsm.Conversation(app, "@downloader_tiktok_bot", True) as conv:
-        await conv.ask(link)
+        try:
+          await conv.ask(link)
+        except errors.UserIsBlocked:
+          await self._app.unblock_user("@downloader_tiktok_bot")
+          await conv.ask(link)
         response = await conv.get_response()
         await message.delete()
         await app.send_video(local, str(response.video.file_id))
@@ -36,7 +40,11 @@ class DdlMod(loader.Module):
       await utils.answer(message, '🔄 Загрузка...')
         
       async with fsm.Conversation(app, "@youtubednbot", True) as conv:
-        await conv.ask(link)
+        try:
+          await conv.ask(link)
+        except errors.UserIsBlocked:
+          await self._app.unblock_user("@downloader_tiktok_bot")
+          await conv.ask(link)
         response = await conv.get_response()
         await message.delete()
         await app.send_video(local, str(response.video.file_id))
