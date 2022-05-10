@@ -41,13 +41,12 @@ class ExampleMod(loader.Module):
     async def ghoul_callback_handler(self, app: Client, call: CallbackQuery):
 
         """Кто нажмёт, тому пизда"""
-        user_id = call.chat.id
-        await app.send_message(user_id, 'Я гуль')
+        await app.send_message('me', 'Я гуль')
         await sleep(2)
         a = 1000
         while a > 0:
             c = a - 7
-            await call.app.send_message(user_id, str(a) + " - 7 = " + str(c))
+            await call.app.send_message('me', str(a) + " - 7 = " + str(c))
             a = c
             await sleep(0.1)
-        await app.send_message(user_id, 'l l let me die')
+        await app.send_message('me', 'l l let me die')
