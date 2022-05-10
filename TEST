@@ -38,10 +38,11 @@ class ExampleMod(loader.Module):
             ]
         )
 
-    @loader.on_bot(lambda self, app, call: call.data == "example_button_callback")  # Сработает только если каллбек дата равняется "example_button_callback"
-    async def ghoul_callback_handler(self, app: Client, call: CallbackQuery):  # _callback_handler на конце функции чтобы обозначить что это каллбек-хендлер
+    @loader.on_bot(lambda self, app, call: call.data == "example_button_callback")
+    async def ghoul_callback_handler(self, app: Client, call: CallbackQuery):
+    
         """Пример каллбека"""
-        
+
         await app.send_message(message.chat.id, 'Я гуль')
         await sleep(2)
         a = 1000
