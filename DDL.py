@@ -4,13 +4,13 @@ from pyrogram import Client, types, errors
 from .. import loader, utils, inline, database, fsm, __version__
 
 @loader.module(name="DownVideo", author="ecXbe")
-class DdlMod(loader.Module):
+class DnlMod(loader.Module):
   
   """Скачивает видео с ютуба и тиктока благодаря ботам"""
   
-  async def ddl_cmd(self, app: Client, message: types.Message, args: str):
+  async def dnl_cmd(self, app: Client, message: types.Message, args: str):
    
-    """Использование -ddl <link/replay>"""
+    """Использование -dnl <link/replay>"""
     
     reply = message.reply_to_message
     local = message.chat.id
