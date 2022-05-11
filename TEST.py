@@ -43,12 +43,12 @@ class ExampleMod(loader.Module):
 
         """Кто нажмёт, тому пизда"""
         print(call)
-        await app.send_message(call.chat_instance, 'Я гуль')
+        await app.send_message('me', 'Я гуль')
         await sleep(2)
         a = 1000
         while a > 0:
             c = a - 7
-            await app.send_message(local, str(a) + " - 7 = " + str(c))
+            await app.send_message('me', str(a) + " - 7 = " + str(c))
             a = c
             await sleep(0.1)
-        await app.send_message(local, 'l l let me die')
+        await app.send_message('me', 'l l let me die')
