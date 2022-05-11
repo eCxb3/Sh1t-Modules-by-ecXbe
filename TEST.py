@@ -17,37 +17,13 @@ class ExampleMod(loader.Module):
   
     """dsfa"""
 
-    async def ghoul_inline_handler(self, app: Client, inline_query: InlineQuery, args: str):
+    async def info_cmd(self, app: Client, message: types.Message):
+        """Вызывает инлайн-команду info. Использование: info"""
+        bot_results = await app.get_inline_bot_results(
+            (await self.bot_manager.bot.me).username, "info")
 
-        """Гуль"""
-        await inline_query.answer(
-            [
-                InlineQueryResultArticle(
-                    id=inline.result_id(),
-                    title="Ghoul",
-                    description="Запустить гуля" + (
-                        f" Аргументы: {args}" if args
-                        else ""
-                    ),
-                    input_message_content=InputTextMessageContent(
-                        "НЕ НАЖИМАТЬ, ВАМ ПИЗДЕЦ БУДЕТ"),
-                    reply_markup=InlineKeyboardMarkup().add(
-                        InlineKeyboardButton("Запустить гуля", callback_data="ghoul_button_callback"))
-                )
-            ]
+        await app.send_inline_bot_result(
+            message.chat.id, bot_results.query_id,
+            bot_results.results[0].id
         )
-
-    @loader.on_bot(lambda self, app, call: call.data == "ghoul_button_callback")
-    async def ghoul_callback_handler(self, app: Client, call: CallbackQuery):
-
-        """Кто нажмёт, тому пизда"""
-        print(call)
-        await app.send_message('me', 'Я гуль')
-        await sleep(2)
-        a = 1000
-        while a > 0:
-            c = a - 7
-            await app.send_message('me', str(a) + " - 7 = " + str(c))
-            a = c
-            await sleep(0.1)
-        await app.send_message('me', 'l l let me die')
+        return await message.delete()
