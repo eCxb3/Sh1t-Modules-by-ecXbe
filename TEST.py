@@ -20,7 +20,7 @@ class ExampleMod(loader.Module):
     async def ghoul_inline_handler(self, app: Client, inline_query: InlineQuery, args: str):
 
         """Гуль"""
-        print(message)
+        
         await inline_query.answer(
             [
                 InlineQueryResultArticle(
