@@ -35,7 +35,7 @@ class DnlMod(loader.Module):
           await conv.ask(link)
         response = await conv.get_response()
         await message.delete()
-        await app.send_video(local, str(response.video.file_id))
+        await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
     elif 'youtube.com' in link or 'youtu.be' in link:
       await utils.answer(message, '🔄 Загрузка...')
         
@@ -47,6 +47,6 @@ class DnlMod(loader.Module):
           await conv.ask(link)
         response = await conv.get_response()
         await message.delete()
-        await app.send_video(local, str(response.video.file_id))
+        await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
     else:
       return await utils.answer(message, '❌ Ссылка не найдена')
