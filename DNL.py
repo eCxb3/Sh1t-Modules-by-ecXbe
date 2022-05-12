@@ -31,9 +31,9 @@ class DnlMod(loader.Module):
         try:
           await conv.ask(link)
         except errors.UserIsBlocked:
-          await self._app.unblock_user("@downloader_tiktok_bot")
+          await app.unblock_user("@downloader_tiktok_bot")
           await conv.ask(link)
-        response = await conv.get_response()
+        response = await conv.get_response(60)
         await message.delete()
         if reply:
           await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
@@ -46,9 +46,9 @@ class DnlMod(loader.Module):
         try:
           await conv.ask(link)
         except errors.UserIsBlocked:
-          await self._app.unblock_user("@youtubednbot")
+          await app.unblock_user("@youtubednbot")
           await conv.ask(link)
-        response = await conv.get_response()
+        response = await conv.get_response(60)
         await message.delete()
         if reply:
           await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
