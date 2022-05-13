@@ -17,7 +17,7 @@ class CwaMod(loader.Module):
   
   """Запустить cwa"""
   
-  async cwa_cmd(self, app: Client, message: types.Message, args: str):
+  async cwa_cmd(self, app: Client, message: types.Message):
     await utils.answer(message, '🔄 Загрузка...')
     
     async with fsm.Conversation(app, "@clan_warsbot", True) as conv:
