@@ -33,7 +33,10 @@ class DnlMod(loader.Module):
         except errors.UserIsBlocked:
           await app.unblock_user("@downloader_tiktok_bot")
           await conv.ask(link)
-        response = await conv.get_response(60)
+        try:
+          response = await conv.get_response(60)
+        except:
+          return await utils.answer(message, '❌ Превышено время ожидания')
         await message.delete()
         if reply:
           await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
@@ -48,7 +51,10 @@ class DnlMod(loader.Module):
         except errors.UserIsBlocked:
           await app.unblock_user("@youtubednbot")
           await conv.ask(link)
-        response = await conv.get_response(60)
+        try:
+          response = await conv.get_response(60)
+        except:
+          return await utils.answer(message, '❌ Превышено время ожидания')
         await message.delete()
         if reply:
           await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
