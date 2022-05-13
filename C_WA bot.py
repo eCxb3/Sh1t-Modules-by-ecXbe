@@ -13,7 +13,7 @@ from pyrogram import Client, types
 from .. import loader, utils, inline, database, fsm, __version__
 
 @loader.module(name="C_WA", author="ecXbe")
-class CWAMod(loader.Module):
+class CwaMod(loader.Module):
   
   """Запустить c_wa"""
   
@@ -25,5 +25,7 @@ class CWAMod(loader.Module):
       await conv.get_response()
       await conv.ask('🔍Найти подельников')
       response = await conv.get_respose()
+      await message.delete()
+      await app.send_message(message.chat.id, response)
       print(response)
       
