@@ -15,7 +15,7 @@ from .. import loader, utils, inline, database, fsm, __version__
 @loader.module(name="ClanWarsAuto", author="ecXbe")
 class CwaMod(loader.Module):
   
-  """Запустить c_wa"""
+  """Запустить cwa"""
   
   async cwa_cmd(self, app: Client, message: types.Message, args: str):
     await utils.answer(message, '🔄 Загрузка...')
