@@ -12,7 +12,7 @@ from aiogram.types import (
 from pyrogram import Client, types
 from .. import loader, utils, inline, database, fsm, __version__
 
-@loader.module(name="C_WA", author="ecXbe")
+@loader.module(name="CWA", author="ecXbe")
 class CwaMod(loader.Module):
   
   """Запустить c_wa"""
