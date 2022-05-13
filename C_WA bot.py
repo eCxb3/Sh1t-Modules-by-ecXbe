@@ -12,12 +12,12 @@ from aiogram.types import (
 from pyrogram import Client, types
 from .. import loader, utils, inline, database, fsm, __version__
 
-@loader.module(name="CWA", author="ecXbe")
+@loader.module(name="ClanWarsAuto", author="ecXbe")
 class CwaMod(loader.Module):
   
   """Запустить c_wa"""
   
-  async clanwarsauto_cmd(self, app: Client, message: types.Message, args: str):
+  async cwa_cmd(self, app: Client, message: types.Message, args: str):
     await utils.answer(message, '🔄 Загрузка...')
     
     async with fsm.Conversation(app, "@clan_warsbot", True) as conv:
@@ -26,6 +26,8 @@ class CwaMod(loader.Module):
       await conv.ask('🔍Найти подельников')
       response = await conv.get_respose()
       await message.delete()
-      await app.send_message(message.chat.id, response)
-      print(response)
+      try:
+        await app.send_message(message.chat.id, response)
+      except:
+        print(response)
       
