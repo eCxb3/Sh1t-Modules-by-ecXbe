@@ -24,7 +24,7 @@ class CwaMod(loader.Module):
       await conv.ask('🏦 Ограбление банка (1 час)')
       await conv.get_response()
       await conv.ask('🔍Найти подельников')
-      response = await conv.get_respose()
+      response = await conv.get_response()
       await message.delete()
       try:
         await app.send_message(message.chat.id, response)
