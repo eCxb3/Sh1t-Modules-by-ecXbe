@@ -15,7 +15,7 @@ from .. import loader, utils, __version__
 
 @loader.module(name="GhoulForAll", author="ecXbe")
 class GhoulforallMod(loader.Module):
-    async def example_inline_handler(self, app: Client, inline_query: InlineQuery, args: str):  # _inline_handler на конце функции чтобы обозначить что это инлайн-команда
+    async def ghoul_inline_handler(self, app: Client, inline_query: InlineQuery, args: str):  # _inline_handler на конце функции чтобы обозначить что это инлайн-команда
                                                                                                 # args - аргументы после команды. необязательный аргумент
         """Пример инлайн-команды. Использование: @bot example [аргументы]"""
         await inline_query.answer(
