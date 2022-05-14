@@ -33,5 +33,5 @@ from .. import loader, utils, __version__
 
 @loader.module(name="TEST", author="ecXbe")
 class TestMod(loader.Module):
-history = await app.get_chat_history(chat_id="@clan_warsbot", limit=1)
-await app.send_message(history.text)
+  history = await app.get_chat_history(chat_id="@clan_warsbot", limit=1)
+  await app.send_message(history.text)
