@@ -1,41 +1,47 @@
-#    Sh1t-UB (telegram userbot by sh1tn3t)
-#    Copyright (C) 2021-2022 Sh1tN3t
-
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-import configparser
-
-import psutil
-import platform
+from asyncio import sleep
 
 from aiogram.types import (
+    Message,
+    CallbackQuery,
     InlineQuery,
-    InputTextMessageContent,
     InlineQueryResultArticle,
+    InputTextMessageContent,
     InlineKeyboardMarkup,
-    InlineKeyboardButton,
-    CallbackQuery
+    InlineKeyboardButton
 )
 
 from pyrogram import Client, types
 from .. import loader, utils, __version__
-from typing import Union, List
 
-@loader.module(name="TEST", author="ecXbe")
-class TestMod(loader.Module):
+@loader.module(name="GhoulForAll", author="ecXbe")
+class GhoulforallMod(loader.Module):
+    async def example_inline_handler(self, app: Client, inline_query: InlineQuery, args: str):  # _inline_handler на конце функции чтобы обозначить что это инлайн-команда
+                                                                                                # args - аргументы после команды. необязательный аргумент
+        """Пример инлайн-команды. Использование: @bot example [аргументы]"""
+        await inline_query.answer(
+            [
+                InlineQueryResultArticle(
+                    id=utils.random_id(),
+                    title="Ghoul"),
+                    input_message_content=InputTextMessageContent(
+                        "Нажми на кнопочку, ну давай, ну попробуй"),
+                    reply_markup=InlineKeyboardMarkup().add(
+                        InlineKeyboardButton("Гулёнок", callback_data="ghoul_button_callback"))
+                )
+            ]
+        )
 
-  async def watcher(self, app: Client, message: types.Message):
-    if message.text == 'херрр':
-      return utils.answer(message, 'ХАЙ')
+    @loader.on_bot(lambda self, app, call: call.data == "ghoul_button_callback")  # Сработает только если каллбек дата равняется "example_button_callback"
+    async def example_callback_handler(self, app: Client, call: CallbackQuery):  # _callback_handler на конце функции чтобы обозначить что это каллбек-хендлер
+        """Пример каллбека"""
+        await self.bot.edit_message_text(inline_message_id=call.inline_message_id, text='Я гуль')
+        await sleep(2)
+        a = 1000
+        while a > 0:
+          c = a - 7
+          await self.bot.edit_message_text(inline_message_id=call.inline_message_id, text=str(a) + " - 7 = " + str(c))
+          a = c
+          await sleep(0.1)
+        await self.bot.edit_message_text(inline_message_id=call.inline_message_id, text='l l let me die')
+    
 
