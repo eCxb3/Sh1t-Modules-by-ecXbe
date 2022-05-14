@@ -34,7 +34,8 @@ from typing import Union, List
 
 @loader.module(name="TEST", author="ecXbe")
 class TestMod(loader.Module):
-        
-  async def test_cmd(self, app: Client, message: types.Message):  
-    history = app.get_history(chat_id="@clan_warsbot", message_id=message.id, limit=1)
-    print(history[0])
+
+  async def watcher(self, app: Client, message: types.Message):
+    if message.text == 'херрр':
+      return utils.answer(message, 'ХАЙ')
+
