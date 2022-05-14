@@ -33,6 +33,14 @@ class CwaMod(loader.Module):
       await sleep(1)
       await conv.ask('🥷🏿Рейд')
       await conv.get_response()
+      
+      while True:
+        history = app.get_chat_history(chat_id="@clan_warsbot", limit=1)
+        if '🥷🏿Упаковываем оружие, гладим лыжные маски и выдвигаемся на дело. У нас есть всего один час, чтобы ограбить этот чёртов банк…' in history.text:
+          break
+        else:
+          await sleep(2)
+        
       await response.click()
       await get_response()
       for _ in range(int(args)):
