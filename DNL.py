@@ -38,10 +38,7 @@ class DnlMod(loader.Module):
         except:
           return await utils.answer(message, '❌ Превышено время ожидания')
         await message.delete()
-        if reply:
-          if args:
-            await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id, caption=args)
-          else:
+       if reply:
             await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
         else:
           args_ = args.split(maxsplit=1)
@@ -64,9 +61,6 @@ class DnlMod(loader.Module):
           return await utils.answer(message, '❌ Превышено время ожидания')
         await message.delete()
         if reply:
-          if args:
-            await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id, caption=args)
-          else:
             await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
         else:
           args_ = args.split(maxsplit=1)
