@@ -35,5 +35,5 @@ from .. import loader, utils, __version__
 class TestMod(loader.Module):
     
   async def test_cmd(self, app: Client, message: types.Message):  
-    async for hs in app.get_chat_history(chat_id, limit=5):
-      print(hs.text)
+    history = self.app.get_history(self.chat.id, limit=1)
+    print(history[0])
