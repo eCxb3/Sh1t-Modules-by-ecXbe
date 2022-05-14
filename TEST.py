@@ -30,6 +30,7 @@ from aiogram.types import (
 
 from pyrogram import Client, types
 from .. import loader, utils, __version__
+from typing import Union, List
 
 @loader.module(name="TEST", author="ecXbe")
 class TestMod(loader.Module):
