@@ -33,7 +33,24 @@ from .. import loader, utils, __version__
 
 @loader.module(name="TEST", author="ecXbe")
 class TestMod(loader.Module):
-    
+  def __init__(
+        self,
+        app: Client,
+        chat_id: Union[str, int],
+        purge: bool = False
+    ) -> None:
+        """Инициализация класса
+        Параметры:
+            app (``pyrogram.Client``):
+                Клиент
+            chat_id (``str`` | ``int``):
+                Чат, в который нужно отправить сообщение
+            purge (``bool``, *optional*):
+                Удалять сообщения после завершения диалога
+        """
+        self.app = app
+        self.chat_id = chat_id
+        
   async def test_cmd(self, app: Client, message: types.Message):  
     history = self.app.get_history(self.chat.id, limit=1)
     print(history[0])
