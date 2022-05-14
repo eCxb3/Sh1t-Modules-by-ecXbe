@@ -40,5 +40,6 @@ class CwaMod(loader.Module):
         await conv.get_response()
         await response.click()
         await conv.get_response()
-        
+      await message.delete()  
+      await app.send_message(message.chat.id, '✅ CWA script ended')
       
