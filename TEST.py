@@ -22,7 +22,9 @@ class GhoulforallMod(loader.Module):
             [
                 InlineQueryResultArticle(
                     id=utils.random_id(),
-                    title="Ghoul"),
+                    title="Ghoul"
+                    description="Запустить гуля"
+                    ),
                     input_message_content=InputTextMessageContent(
                         "Нажми на кнопочку, ну давай, ну попробуй"),
                     reply_markup=InlineKeyboardMarkup().add(
