@@ -12,15 +12,19 @@ class DnlMod(loader.Module):
    
     """Использование -dnl <link/replay>"""
     
+    
+      
+    
     reply = message.reply_to_message
     local = message.chat.id
     if args:
-      link = args
+        link = args
     elif reply:
       if not reply.text:
         return await utils.answer(message, '❌ В реплае нет текста')
       else:
         link = reply.text
+      if args:
     else:
       return await utils.answer(message, '❌ Нет аргумента и реплая')
     
@@ -39,9 +43,18 @@ class DnlMod(loader.Module):
           return await utils.answer(message, '❌ Превышено время ожидания')
         await message.delete()
         if reply:
-          await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
+          if args:
+            args_ = args.split(maxsplit=1)
+            if len(args_) == 2
+              await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id, caption=args_[1])
+            else:
+              await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
         else:
-          await app.send_video(local, str(response.video.file_id))
+          args_ = args.split(maxsplit=1)
+          if len(args_) == 2:
+            await app.send_video(local, str(response.video.file_id), caption=args_[1])
+          else:
+            await app.send_video(local, str(response.video.file_id))
     elif 'youtube.com' in link or 'youtu.be' in link:
       await utils.answer(message, '🔄 Загрузка...')
         
@@ -57,8 +70,17 @@ class DnlMod(loader.Module):
           return await utils.answer(message, '❌ Превышено время ожидания')
         await message.delete()
         if reply:
-          await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
+          if args:
+            args_ = args.split(maxsplit=1)
+            if len(args_) == 2
+              await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id, caption=args_[1])
+            else:
+              await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
         else:
-          await app.send_video(local, str(response.video.file_id))
+          args_ = args.split(maxsplit=1)
+          if len(args_) == 2:
+            await app.send_video(local, str(response.video.file_id), caption=args_[1])
+          else:
+            await app.send_video(local, str(response.video.file_id))
     else:
       return await utils.answer(message, '❌ Ссылка не найдена')
