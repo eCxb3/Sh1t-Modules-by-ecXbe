@@ -20,6 +20,12 @@ class CwaMod(loader.Module):
   async def cwa_cmd(self, app: Client, message: types.Message, args: str):
     await utils.answer(message, '🔄 Загрузка...')
     
+    async with fsm.Conversation(app, "@Testbot_testbot_botbot", True) as conv:
+        await conv.ask('/random')
+        res = await conv.get_response()
+        await res.click()
+        
+  """ 
     async with fsm.Conversation(app, "@clan_warsbot", True) as conv:
       await conv.ask('🏦 Ограбление банка (1 час)')
       await conv.get_response()
@@ -30,4 +36,4 @@ class CwaMod(loader.Module):
         await app.send_message(message.chat.id, response)
       except:
         print(response)
-      
+  """
