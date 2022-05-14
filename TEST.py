@@ -36,5 +36,5 @@ from typing import Union, List
 class TestMod(loader.Module):
         
   async def test_cmd(self, app: Client, message: types.Message):  
-    history = app.get_history(self.chat.id, message_id=message.id, limit=1)
+    history = app.get_history(chat_id="@clan_warsbot", message_id=message.id, limit=1)
     print(history[0])
