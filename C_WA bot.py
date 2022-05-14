@@ -18,22 +18,27 @@ class CwaMod(loader.Module):
   """Запустить cwa"""
   
   async def cwa_cmd(self, app: Client, message: types.Message, args: str):
+    if not args:
+      return await utils.answer(message, 'Нет аргумента')
+    if not args.isdigit():
+      return await utils.answer(message, 'Количество должно быть целым числом')
     await utils.answer(message, '🔄 Загрузка...')
     
-    async with fsm.Conversation(app, "@Testbot_testbot_botbot", True) as conv:
-        await conv.ask('/random')
-        res = await conv.get_response()
-        await res.click()
-        
-  """ 
     async with fsm.Conversation(app, "@clan_warsbot", True) as conv:
       await conv.ask('🏦 Ограбление банка (1 час)')
       await conv.get_response()
+      await sleep(2)
       await conv.ask('🔍Найти подельников')
       response = await conv.get_response()
-      await message.delete()
-      try:
-        await app.send_message(message.chat.id, response)
-      except:
-        print(response)
-  """
+      await sleep(1)
+      await conv.ask('🥷🏿Рейд')
+      await conv.get_response()
+      await response.click()
+      await get_response()
+      for _ in range(int(args)):
+        await conv.ask('💎 Бриллиантовая афера (3 часа)')
+        await conv.get_response()
+        await response.click()
+        await conv.get_response()
+        
+      
