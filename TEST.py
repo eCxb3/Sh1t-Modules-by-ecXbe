@@ -34,10 +34,7 @@ from typing import Union, List
 
 @loader.module(name="TEST", author="ecXbe")
 class TestMod(loader.Module):
-  def __init__(self, app: Client, chat_id: Union[str, int]) -> None:
-        self.app = app
-        self.chat_id = chat_id
         
   async def test_cmd(self, app: Client, message: types.Message):  
-    history = self.app.get_history(self.chat.id, limit=1)
+    history = app.get_history(self.chat.id, message_id=message.id, limit=1)
     print(history[0])
