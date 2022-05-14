@@ -12,9 +12,6 @@ class DnlMod(loader.Module):
    
     """Использование -dnl <link/replay>"""
     
-    
-      
-    
     reply = message.reply_to_message
     local = message.chat.id
     if args:
@@ -24,7 +21,6 @@ class DnlMod(loader.Module):
         return await utils.answer(message, '❌ В реплае нет текста')
       else:
         link = reply.text
-      if args:
     else:
       return await utils.answer(message, '❌ Нет аргумента и реплая')
     
@@ -49,6 +45,8 @@ class DnlMod(loader.Module):
               await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id, caption=args_[1])
             else:
               await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
+          else:
+            await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
         else:
           args_ = args.split(maxsplit=1)
           if len(args_) == 2:
@@ -76,6 +74,8 @@ class DnlMod(loader.Module):
               await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id, caption=args_[1])
             else:
               await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
+          else:
+            await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
         else:
           args_ = args.split(maxsplit=1)
           if len(args_) == 2:
