@@ -34,21 +34,7 @@ from typing import Union, List
 
 @loader.module(name="TEST", author="ecXbe")
 class TestMod(loader.Module):
-  def __init__(
-        self,
-        app: Client,
-        chat_id: Union[str, int],
-        purge: bool = False
-    ) -> None:
-        """Инициализация класса
-        Параметры:
-            app (``pyrogram.Client``):
-                Клиент
-            chat_id (``str`` | ``int``):
-                Чат, в который нужно отправить сообщение
-            purge (``bool``, *optional*):
-                Удалять сообщения после завершения диалога
-        """
+  def __init__(self, app: Client, chat_id: Union[str, int]) -> None:
         self.app = app
         self.chat_id = chat_id
         
