@@ -41,7 +41,7 @@ class DnlMod(loader.Module):
         if reply:
           if args:
             args_ = args.split(maxsplit=1)
-            if len(args_) == 2
+            if len(args_) == 2:
               await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id, caption=args_[1])
             else:
               await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
@@ -70,7 +70,7 @@ class DnlMod(loader.Module):
         if reply:
           if args:
             args_ = args.split(maxsplit=1)
-            if len(args_) == 2
+            if len(args_) == 2:
               await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id, caption=args_[1])
             else:
               await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
