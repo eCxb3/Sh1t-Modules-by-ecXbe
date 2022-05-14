@@ -1,7 +1,7 @@
 from asyncio import sleep
 
 from pyrogram import Client, types, errors
-from .. import loader, utils, inline, database, fsm, __version__
+from .. import loader, utils, inline, fsm
 
 @loader.module(name="DownVideo", author="ecXbe")
 class DnlMod(loader.Module):
