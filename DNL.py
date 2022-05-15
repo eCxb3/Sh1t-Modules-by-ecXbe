@@ -63,11 +63,14 @@ class DnlMod(loader.Module):
       return await utils.answer(message, '❌ Ссылка не найдена')
 
   @loader.on_bot(lambda self, app, message: "-dnl" in message.text)
-  async def dlv_message_handler(self, app: Client, message: types.Message, args: str):
+  async def dlv_message_handler(self, app: Client, message: types.Message):
+    
+    args = message.text.split(maxsplit=1)
+    args = args[1]
     
     reply = message.reply_to_message
     local = message.chat.id
-    if args:
+    if args != '':
       link = args
     elif reply:
       if not reply.text:
