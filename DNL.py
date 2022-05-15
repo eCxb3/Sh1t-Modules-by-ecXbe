@@ -63,7 +63,7 @@ class DnlMod(loader.Module):
       return await utils.answer(message, '❌ Ссылка не найдена')
 
   @loader.on_bot(lambda self, app, message: "-dnl" in message.text)
-  async def dlv_message_handler(self, app: Client, message: types.Message, args: str):
+  async def dlv_message_handler(self, app: Client, message: Message, args: str):
     
     reply = message.reply_to_message
     local = message.chat.id
@@ -71,14 +71,14 @@ class DnlMod(loader.Module):
       link = args
     elif reply:
       if not reply.text:
-        return await utils.answer(message, '❌ В реплае нет текста')
+        return await message.reply('❌ В реплае нет текста')
       else:
         link = reply.text
     else:
-      return await utils.answer(message, '❌ Нет аргумента и реплая')
+      return await message.reply('❌ Нет аргумента и реплая')
     
     if 'tiktok.com' in link:
-      await utils.answer(message, '🔄 Загрузка...')
+      await app.send_message(message.chat.id, '🔄 Загрузка...')
         
       async with fsm.Conversation(app, "@downloader_tiktok_bot", True) as conv:
         try:
@@ -96,7 +96,7 @@ class DnlMod(loader.Module):
         else:
           await app.send_video(local, str(response.video.file_id))
     elif 'youtube.com' in link or 'youtu.be' in link:
-      await utils.answer(message, '🔄 Загрузка...')
+      await app.send_message(message.chat.id, '🔄 Загрузка...')
         
       async with fsm.Conversation(app, "@youtubednbot", True) as conv:
         try:
