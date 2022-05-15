@@ -62,7 +62,7 @@ class DnlMod(loader.Module):
     else:
       return await utils.answer(message, '❌ Ссылка не найдена')
 
-  @loader.on_bot(lambda self, app, message: message.text and message.text.lower() == "-dnl")
+  @loader.on_bot(lambda self, app, message: "-dnl" in  getattr(message, "text", ""))
   async def dlv_message_handler(self, app: Client, message: types.Message, args: str):
     
     reply = message.reply_to_message
