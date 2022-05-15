@@ -63,7 +63,7 @@ class DnlMod(loader.Module):
       return await utils.answer(message, '❌ Ссылка не найдена')
 
 
-  async def dlv_message_handler(self, app: Client, message: Message, args: str):
+  async def dlv_message_handler(self, app: Client, message: types.Message, args: str):
     
     reply = message.reply_to_message
     local = message.chat.id
