@@ -87,7 +87,7 @@ class DnlMod(loader.Module):
       return await message.reply('❌ Нет аргумента и реплая')
     
     if 'tiktok.com' in link:
-      loading = await message.reply_text(message.chat.id, '🔄 Загрузка...', quote=True)
+      loading = await message.reply('🔄 Загрузка...', quote=False)
         
       async with fsm.Conversation(app, "@downloader_tiktok_bot", True) as conv:
         try:
@@ -102,7 +102,7 @@ class DnlMod(loader.Module):
         await loading.delete()
         await response.copy(message.chat.id)
     elif 'youtube.com' in link or 'youtu.be' in link:
-      loading = await message.reply_text(message.chat.id, '🔄 Загрузка...', quote=True)
+      loading = await message.reply('🔄 Загрузка...', quote=False)
         
       async with fsm.Conversation(app, "@youtubednbot", True) as conv:
         try:
