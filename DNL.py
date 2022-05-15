@@ -1,5 +1,6 @@
-from pyrogram import Client, types, errors
-from .. import loader, utils, inline, fsm
+from asyncio import sleep
+from pyrogram import Client, types
+from .. import loader, utils, fsm
 
 @loader.module(name="DownVideo", author="ecXbe")
 class DnlMod(loader.Module):
@@ -28,7 +29,7 @@ class DnlMod(loader.Module):
       async with fsm.Conversation(app, "@downloader_tiktok_bot", True) as conv:
         try:
           await conv.ask(link)
-        except errors.UserIsBlocked:
+        except:
           await app.unblock_user("@downloader_tiktok_bot")
           await conv.ask(link)
         try:
@@ -46,7 +47,7 @@ class DnlMod(loader.Module):
       async with fsm.Conversation(app, "@youtubednbot", True) as conv:
         try:
           await conv.ask(link)
-        except errors.UserIsBlocked:
+        except:
           await app.unblock_user("@youtubednbot")
           await conv.ask(link)
         try:
