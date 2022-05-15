@@ -1,5 +1,3 @@
-from asyncio import sleep
-
 from pyrogram import Client, types, errors
 from .. import loader, utils, inline, fsm
 
