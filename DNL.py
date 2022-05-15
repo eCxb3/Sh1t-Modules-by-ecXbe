@@ -82,11 +82,13 @@ class DnlMod(loader.Module):
       if not reply.text:
         return await message.reply('❌ В реплае нет текста')
       else:
+        reply_msg_id = message.reply_to_message_id
         link = reply.text
     else:
       return await message.reply('❌ Нет аргумента и реплая')
     
     if 'tiktok.com' in link:
+      await message.delete()
       loading = await app.send_message(message.chat.id, '🔄 Загрузка...')
         
       async with fsm.Conversation(app, "@downloader_tiktok_bot", True) as conv:
@@ -101,10 +103,11 @@ class DnlMod(loader.Module):
           return await utils.answer(loading, '❌ Превышено время ожидания')
         await loading.delete()
         if reply:
-          await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
+          await app.send_video(local, str(response.video.file_id), reply_to_message_id=reply_msg_id)
         else:
           await app.send_video(local, str(response.video.file_id))
     elif 'youtube.com' in link or 'youtu.be' in link:
+      await message.delete()
       loading = await app.send_message(message.chat.id, '🔄 Загрузка...')
         
       async with fsm.Conversation(app, "@youtubednbot", True) as conv:
@@ -119,7 +122,7 @@ class DnlMod(loader.Module):
           return await utils.answer(loading, '❌ Превышено время ожидания')
         await loading.delete()
         if reply:
-          await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
+          await app.send_video(local, str(response.video.file_id), reply_to_message_id=reply_msg_id)
         else:
           await app.send_video(local, str(response.video.file_id))
     else:
