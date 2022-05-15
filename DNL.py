@@ -71,10 +71,12 @@ class DnlMod(loader.Module):
     args_ = message.text.split(maxsplit=1)
     if len(args_) == 2:
       args = args_[1]
+    else:
+      args = False
     
     reply = message.reply_to_message
     local = message.chat.id
-    if args:
+    if args != False:
       link = args
     elif reply:
       if not reply.text:
