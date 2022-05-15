@@ -62,15 +62,19 @@ class DnlMod(loader.Module):
     else:
       return await utils.answer(message, '❌ Ссылка не найдена')
 
+  
+  
+  
   @loader.on_bot(lambda self, app, message: "-dnl" in message.text)
   async def dlv_message_handler(self, app: Client, message: types.Message):
     
-    args = message.text.split(maxsplit=1)
-    args = args[1]
+    args_ = message.text.split(maxsplit=1)
+    if len(args_) == 2:
+      args = args_[1]
     
     reply = message.reply_to_message
     local = message.chat.id
-    if args != '':
+    if args:
       link = args
     elif reply:
       if not reply.text:
@@ -81,7 +85,7 @@ class DnlMod(loader.Module):
       return await message.reply('❌ Нет аргумента и реплая')
     
     if 'tiktok.com' in link:
-      await app.send_message(message.chat.id, '🔄 Загрузка...')
+      loading = await app.send_message(message.chat.id, '🔄 Загрузка...')
         
       async with fsm.Conversation(app, "@downloader_tiktok_bot", True) as conv:
         try:
@@ -92,14 +96,14 @@ class DnlMod(loader.Module):
         try:
           response = await conv.get_response(60)
         except:
-          return await utils.answer(message, '❌ Превышено время ожидания')
-        await message.delete()
+          return await utils.answer(loading, '❌ Превышено время ожидания')
+        await loading.delete()
         if reply:
           await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
         else:
           await app.send_video(local, str(response.video.file_id))
     elif 'youtube.com' in link or 'youtu.be' in link:
-      await app.send_message(message.chat.id, '🔄 Загрузка...')
+      loading = await app.send_message(message.chat.id, '🔄 Загрузка...')
         
       async with fsm.Conversation(app, "@youtubednbot", True) as conv:
         try:
@@ -110,11 +114,11 @@ class DnlMod(loader.Module):
         try:
           response = await conv.get_response(60)
         except:
-          return await utils.answer(message, '❌ Превышено время ожидания')
-        await message.delete()
+          return await utils.answer(loading, '❌ Превышено время ожидания')
+        await loading.delete()
         if reply:
           await app.send_video(local, str(response.video.file_id), reply_to_message_id=message.reply_to_message_id)
         else:
           await app.send_video(local, str(response.video.file_id))
     else:
-      return await utils.answer(message, '❌ Ссылка не найдена')
+      return await message.reply('❌ Ссылка не найдена')
