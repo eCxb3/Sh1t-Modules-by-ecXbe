@@ -66,7 +66,7 @@ class DnlMod(loader.Module):
   
   
   @loader.on_bot(lambda self, app, message: message.text[:4] == "-dnl")
-  async def dlv_message_handler(self, app: Bot, message: types.Message):
+  async def dlv_message_handler(self, app: Client, message: types.Message):
     
     args_ = message.text.split(maxsplit=1)
     if len(args_) == 2:
@@ -115,6 +115,6 @@ class DnlMod(loader.Module):
         except:
           return await utils.answer(loading, '❌ Превышено время ожидания')
         await loading.delete()
-        await app.send_video(video=str(response.video.file_id))
+        await bot.send_video(video=str(response.video.file_id))
     else:
       return await message.reply('❌ Ссылка не найдена')
