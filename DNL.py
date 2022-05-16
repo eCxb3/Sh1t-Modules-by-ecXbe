@@ -115,6 +115,6 @@ class DnlMod(loader.Module):
         except:
           return await utils.answer(loading, '❌ Превышено время ожидания')
         await loading.delete()
-        await self.bot.copy_message(message.chat.id, response.chat.id, response.message_id)
+        await self.bot.copy_message(message.chat.id, response.chat_id, response.message_id)
     else:
       return await message.reply('❌ Ссылка не найдена')
