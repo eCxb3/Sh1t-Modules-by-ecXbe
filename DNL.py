@@ -115,6 +115,6 @@ class DnlMod(loader.Module):
         except:
           return await utils.answer(loading, '❌ Превышено время ожидания')
         await loading.delete()
-        await self.bot.send_video(chat_id=message.chat.id, video=str(response.text))
+        await self.bot.send_video(chat_id=message.chat.id, video=str(response.reply_to_message.text))
     else:
       return await message.reply('❌ Ссылка не найдена')
