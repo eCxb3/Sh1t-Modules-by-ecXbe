@@ -100,7 +100,11 @@ class DnlMod(loader.Module):
         except:
           return await utils.answer(loading, '❌ Превышено время ожидания')
         await loading.delete()
-        await self.bot.send_video(chat_id=message.chat.id, video=str(response.video.file_id))
+        bt = await app.send_video('@sh1tub_8VVd1k_bot', video=str(response.video.file_id))
+        await sleep(1)
+        
+        await self.bot.send_video(message.chat.id, video=str(bt.video.file_id))
+        await bt.delete()
     elif 'youtube.com' in link or 'youtu.be' in link:
       loading = await message.reply(text="🔄 Загрузка...")
         
@@ -118,8 +122,6 @@ class DnlMod(loader.Module):
         
         bt = await app.send_video('@sh1tub_8VVd1k_bot', video=str(response.video.file_id))
         await sleep(1)
-        
-        
         
         await self.bot.send_video(message.chat.id, video=str(bt.video.file_id))
         await bt.delete()
