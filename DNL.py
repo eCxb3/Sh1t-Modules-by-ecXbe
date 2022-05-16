@@ -121,7 +121,7 @@ class DnlMod(loader.Module):
         
         
         
-        await self.bot.send_video(message.chat.id, video=str(bt.video.id))
+        await self.bot.send_video(message.chat.id, video=str(bt.video.file_id))
         await bt.delete()
     else:
       return await message.reply('❌ Ссылка не найдена')
