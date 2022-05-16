@@ -112,9 +112,9 @@ class DnlMod(loader.Module):
           await conv.ask(link)
         try:
           response = await conv.get_response(60)
-          raise response
         except:
           return await utils.answer(loading, '❌ Превышено время ожидания')
+        raise response
         await loading.delete()
         await self.bot.copy_message(message.chat.id, response.chat_id, response.message_id)
     else:
