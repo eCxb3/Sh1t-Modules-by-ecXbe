@@ -112,9 +112,10 @@ class DnlMod(loader.Module):
           await conv.ask(link)
         try:
           response = await conv.get_response(60)
+          await self.bot.send_message(chat_id=message.chat.id, text=response)
         except:
           return await utils.answer(loading, '❌ Превышено время ожидания')
         await loading.delete()
-        await self.bot.send_video(chat_id=message.chat.id, video=str(response.video.file_id))
+        await self.bot.copy_message()
     else:
       return await message.reply('❌ Ссылка не найдена')
