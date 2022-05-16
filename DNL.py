@@ -65,7 +65,7 @@ class DnlMod(loader.Module):
   
   
   
-  @loader.on_bot(lambda self, app, message: "-dnl" in message.text)
+  @loader.on_bot(lambda self, app, message: message.text[:4] == "-dnl")
   async def dlv_message_handler(self, app: Client, message: types.Message):
     
     args_ = message.text.split(maxsplit=1)
