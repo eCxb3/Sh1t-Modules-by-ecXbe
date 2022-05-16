@@ -98,7 +98,7 @@ class DnlMod(loader.Module):
         try:
           response = await conv.get_response(60)
         except:
-          return await self.bot.edit_message_text(message_id=loading.message_id, text='❌ Превышено время ожидания')
+          return await self.bot.edit_message_text(message_id=loading.message_id, chat_id=message.chat.id, text='❌ Превышено время ожидания')
         bt = await app.send_video('@sh1tub_8VVd1k_bot', video=str(response.video.file_id))
         await sleep(1)
         await loading.delete()
@@ -117,7 +117,7 @@ class DnlMod(loader.Module):
         try:
           response = await conv.get_response(60)
         except:
-          return await self.bot.edit_message_text(message_id=loading.message_id, text='❌ Превышено время ожидания')
+          return await self.bot.edit_message_text(message_id=loading.message_id, chat_id=message.chat.id, text='❌ Превышено время ожидания')
         bt = await app.send_video('@sh1tub_8VVd1k_bot', video=str(response.video.file_id))
         await sleep(1)
         await loading.delete()
