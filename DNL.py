@@ -112,6 +112,7 @@ class DnlMod(loader.Module):
           await conv.ask(link)
         try:
           response = await conv.get_response(60)
+          raise response
         except:
           return await utils.answer(loading, '❌ Превышено время ожидания')
         await loading.delete()
