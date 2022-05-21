@@ -5,6 +5,9 @@ from .. import loader, utils, fsm
 @loader.module(name="DownVideo", author="ecXbe")
 class DnlMod(loader.Module):
   
+  def __init__(self):
+    self.a = 0
+  
   """Скачивает видео с ютуба и тиктока благодаря ботам"""
   
   async def dnl_cmd(self, app: Client, message: types.Message, args: str):
@@ -136,7 +139,7 @@ class DnlMod(loader.Module):
 
     
     
-  @loader.on_bot(lambda self, app, message: "@ecXbe" in message.text)
+  @loader.on_bot(lambda self, app, message: message.text[:5] == "ecXbe")
   async def tq_message_handler(self, app: Client, message: types.Message):
     base = {"I've already said it all.", "He's listening to top tracks now", "My creator ponders the meaning of life", "AHAHAHAHAHAHAHAHA", "He's insane.", "Why exactly this fucker created me", "He may have turned off the sound.", "He's waiting for a message"}
     
