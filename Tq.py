@@ -4,8 +4,8 @@ from .. import loader, utils, fsm
 
 @loader.module(name="tq", author="ecXbe")
 class TqMod(loader.Module):
-    def __init__(self):
-      self.a = 0
+  def __init__(self):
+    self.a = 0
   
   @loader.on_bot(lambda self, app, message: "@ecXbe" in message.text)
   async def tq_message_handler(self, app: Client, message: types.Message):
