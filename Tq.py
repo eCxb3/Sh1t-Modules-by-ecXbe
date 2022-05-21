@@ -3,7 +3,7 @@ from pyrogram import Client, types
 from .. import loader, utils, fsm
 
 @loader.module(name="tq", author="ecXbe")
-class DnlMod(loader.Module):
+class TqMod(loader.Module):
   a = 0
   
   #@loader.on_bot(lambda self, app, message: types.Message)
