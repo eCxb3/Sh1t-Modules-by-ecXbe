@@ -4,11 +4,10 @@ from .. import loader, utils, fsm
 
 @loader.module(name="tq", author="ecXbe")
 class TqMod(loader.Module):
-  def __init__(self):
-    self.a = 0
-    self.t = "qwertyuiop[]asdfghjkl;'\zxcvbnm,./ йцукенгшщзхъфывапролджэ\ячсмитьбю."
+    def __init__(self):
+      self.a = 0
   
-  @loader.on_bot(lambda self, app, message: message.text[0] in self.t)
+  @loader.on_bot(lambda self, app, message: "@ecXbe" in message.text)
   async def tq_message_handler(self, app: Client, message: types.Message):
     base = {"I've already said it all.", "He's listening to top tracks now", "My creator ponders the meaning of life", "AHAHAHAHAHAHAHAHA", "He's insane.", "Why exactly this fucker created me", "He may have turned off the sound.", "He's waiting for a message"}
     
