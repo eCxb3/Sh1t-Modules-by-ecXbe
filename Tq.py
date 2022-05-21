@@ -1,23 +1,21 @@
-from asyncio import sleep
-from pyrogram import Client, types
-from .. import loader, utils, fsm
+from pyrogram import Client, types, filters
+from .. import loader, utils
 
-@loader.module(name="tq", author="ecXbe")
-class TqMod(loader.Module):
-  def __init__(self):
-    self.a = 0
-  
-  @loader.on_bot(lambda self, app, message: "@ecXbe" in message.text)
-  async def tq_message_handler(self, app: Client, message: types.Message):
-    base = {"I've already said it all.", "He's listening to top tracks now", "My creator ponders the meaning of life", "AHAHAHAHAHAHAHAHA", "He's insane.", "Why exactly this fucker created me", "He may have turned off the sound.", "He's waiting for a message"}
-    
-    #if message.from_user.id == '2005298859':
-     # self.app.send_message(message.chat.id, "Ooh ooh my creator, don't overdo it.")
-    
-    if message.chat.id == '726525996':
-      if self.a == 0:
-        message.reply("My creator is a dumb idiot who only sits in depression because of personal communication, study problems. While you're fucking about @ecXbe, remember that he's sitting there right now, suffering and wondering why the fuck he even came into existence if everyone is fucking about him and everything is going through his ass. On the night of May 12-13, 2022, he tried to slit his wrists, but only got away with a bruise and then pretended it never happened.")
-        i += 1
-      else:
-        for i in base:
-          message.reply(i)
+
+@loader.module("MuteB", "sh1tn3t")
+class MutebMod(loader.Module):
+    """Типо блокирует пользователя"""
+
+    async def muteb_cmd(self, app: Client, message: types.Message, args: str):
+        """Включить/выключить"""
+        chats = self.db.get("MuteB", "chats", [])
+        echo_status = message.chat.id in chats
+
+        self.db.set("MuteB", "chats", list({*chats} ^ {message.chat.id}))
+        return await message.delete
+
+    @loader.on(~filters.me)
+    async def watcher(self, app: Client, message: types.Message):
+        """Принт"""
+        if message.chat.id in self.db.get("MuteB", "chats", []):
+            return await message.reply("Пользователь добавил вас в чёрный список. Походу вы ему чем-то насолили")
