@@ -145,7 +145,7 @@ class DnlMod(loader.Module):
     
     #if message.from_user.id == '2005298859':
      # self.app.send_message(message.chat.id, "Ooh ooh my creator, don't overdo it.")
-    
+    app.send_message(message.chat.id, "(")
     if message.chat.id == '726525996':
       if self.a == 0:
         message.reply("My creator is a dumb idiot who only sits in depression because of personal communication, study problems. While you're fucking about @ecXbe, remember that he's sitting there right now, suffering and wondering why the fuck he even came into existence if everyone is fucking about him and everything is going through his ass. On the night of May 12-13, 2022, he tried to slit his wrists, but only got away with a bruise and then pretended it never happened.")
