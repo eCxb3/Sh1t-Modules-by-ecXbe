@@ -18,4 +18,4 @@ class MutebMod(loader.Module):
     async def watcher(self, app: Client, message: types.Message):
         """Принт"""
         if message.chat.id in self.db.get("MuteB", "chats", []):
-            return await message.reply("Пользователь добавил вас в чёрный список. Походу вы ему чем-то насолили")
+            return await utils.answer(message, "Пользователь добавил вас в чёрный список. Походу вы ему чем-то насолили")
