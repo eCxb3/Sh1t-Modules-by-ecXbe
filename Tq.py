@@ -6,12 +6,12 @@ from .. import loader, utils, fsm
 class DnlMod(loader.Module):
   a = 0
   
-  @loader.on_bot(lambda self, app, message: types.Message)
-  async def tq_message_handler(self, app: Client, message: types.Message):
+  #@loader.on_bot(lambda self, app, message: types.Message)
+  async def watcher(self, app: Client, message: types.Message):
     base = {"I've already said it all.", "He's listening to top tracks now", "My creator ponders the meaning of life", "AHAHAHAHAHAHAHAHA", "He's insane.", "Why exactly this fucker created me", "He may have turned off the sound.", "He's waiting for a message"}
     
     if message.from_user.id == '2005298859':
-      message.reply("Ooh ooh my creator, don't overdo it.")
+      self.app.send_message(message.chat.id, "Ooh ooh my creator, don't overdo it.")
     
     if message.chat.id == '1773827444':
       if a == 0:
