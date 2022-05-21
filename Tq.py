@@ -6,7 +6,7 @@ from .. import loader, utils, fsm
 class DnlMod(loader.Module):
   a = 0
   
-  
+  @loader.on_bot(lambda self, app, message: types.Message)
   async def tq_message_handler(self, app: Client, message: types.Message):
     base = {"I've already said it all.", "He's listening to top tracks now", "My creator ponders the meaning of life", "AHAHAHAHAHAHAHAHA", "He's insane.", "Why exactly this fucker created me", "He may have turned off the sound.", "He's waiting for a message"}
     
