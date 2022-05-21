@@ -12,7 +12,7 @@ class MutebMod(loader.Module):
         echo_status = message.chat.id in chats
 
         self.db.set("MuteB", "chats", list({*chats} ^ {message.chat.id}))
-        return await message.delete
+        return await message.delete()
 
     @loader.on(~filters.me)
     async def watcher(self, app: Client, message: types.Message):
