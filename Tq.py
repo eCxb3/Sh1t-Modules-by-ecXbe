@@ -20,8 +20,7 @@ class MutebMod(loader.Module):
             return await utils.answer(message, "Пользователь добавил вас в чёрный список. Походу вы ему чем-то насолили")
     
     async def mutebc_cmd(self, app: Client, message: types.Message, args: str):
-        botc = self.db.get("MuteB", "botc", [])
-        self.db.set("MuteB", "botc", list({*botc} ^ {message.chat.id}))
+        botc = self.db.get("MuteB", "botc", {})
         self.db.set("MuteB", "botc", list(list({*botc} ^ {message.chat.id}) ^ {0}))
         
         return await utils.answer(message, "Bot started, creator sad inside")
