@@ -20,8 +20,6 @@ class MutebMod(loader.Module):
             return await utils.answer(message, "Пользователь добавил вас в чёрный список. Походу вы ему чем-то насолили")
     
     async def mutebc_cmd(self, app: Client, message: types.Message, args: str):
-        botc = self.db.get("MuteBot", "botc", {})
-        self.db.set("MuteBot", "botc", list({*botc} ^ ({message.chat.id}: True)))
         
         chats = self.db.get("MuteBot", "botc", {})
         if not chats.get(str(chat.id)):
