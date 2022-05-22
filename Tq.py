@@ -20,8 +20,8 @@ class MutebMod(loader.Module):
             return await utils.answer(message, "Пользователь добавил вас в чёрный список. Походу вы ему чем-то насолили")
     
     async def mutebc_cmd(self, app: Client, message: types.Message, args: str):
-        botc = self.db.get("MuteB", [])
-        self.db.set("MuteB", list({*botc} ^ {message.chat.id}), 0)
+        botc = self.db.get("MuteB", "botc", [])
+        self.db.set("MuteB", "botc", list({*botc} ^ {message.chat.id})+": 0")
         
         return await utils.answer(message, "Bot started, creator sad inside")
    
@@ -35,7 +35,7 @@ class MutebMod(loader.Module):
                 if self.db.get("MuteB", "botc", message.chat.id) == 0:
                     return await message.reply("My creator is a dumb idiot who only sits in depression because of personal communication, study problems. While you're fucking about @ecXbe, remember that he's sitting there right now, suffering and wondering why the fuck he even came into existence if everyone is fucking about him and everything is going through his ass. On the night of May 12-13, 2022, he tried to slit his wrists, but only got away with a bruise and then pretended it never happened.")
                     botc = self.db.get("MuteB", "botc")
-                    self.db.set("MuteB", list({*botc} ^ {message.chat.id}), 1)
+                    self.db.set("MuteB", "botc", list({*botc} ^ {message.chat.id})+": 1")
                 else:
                     for i in base:
                         return await message.reply(i)
