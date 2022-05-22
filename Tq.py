@@ -21,6 +21,8 @@ class MutebMod(loader.Module):
     
     async def mutebc_cmd(self, app: Client, message: types.Message, args: str):
         
+        chat = message.chat
+        
         chats = self.db.get("MuteBot", "botc", {})
         if not chats.get(str(chat.id)):
             chats[str(chat.id)] = 0
