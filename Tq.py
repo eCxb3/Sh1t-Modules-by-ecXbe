@@ -21,7 +21,8 @@ class MutebMod(loader.Module):
     
     async def mutebc_cmd(self, app: Client, message: types.Message, args: str):
         botc = self.db.get("MuteB", "botc", [])
-        self.db.set("MuteB", "botc", list(list({*botc} ^ {message.chat.id})) ^ {0})
+        self.db.set("MuteB", "botc", list({*botc} ^ {message.chat.id}))
+        self.db.set("MuteB", "botc", list(list({*botc} ^ {message.chat.id}) ^ {0}))
         
         return await utils.answer(message, "Bot started, creator sad inside")
    
