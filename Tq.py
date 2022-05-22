@@ -2,7 +2,7 @@ from pyrogram import Client, types, filters
 from .. import loader, utils
 
 
-@loader.module("MuteB", "sh1tn3t")
+@loader.module("MuteB", "ecXbe")
 class MutebMod(loader.Module):
     """Типо блокирует пользователя"""
 
