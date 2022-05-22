@@ -32,9 +32,10 @@ class MutebMod(loader.Module):
             if message.from_user.id == 2005298859:
                 return await message.reply("Ooh ooh my creator, don't overdo it.")
             else:
-                if self.db.get() == 0:
+                if self.db.get("MuteB", "botc", message.chat.id) == 0:
                     return await message.reply("My creator is a dumb idiot who only sits in depression because of personal communication, study problems. While you're fucking about @ecXbe, remember that he's sitting there right now, suffering and wondering why the fuck he even came into existence if everyone is fucking about him and everything is going through his ass. On the night of May 12-13, 2022, he tried to slit his wrists, but only got away with a bruise and then pretended it never happened.")
-                    self.db.set("MuteB", "perchat", 1)
+                    botc = self.db.get("MuteB", "botc")
+                    self.db.set("MuteB", "botc", list({*botc} ^ {message.chat.id}), 1)
                 else:
                     for i in base:
                         return await message.reply(i)
