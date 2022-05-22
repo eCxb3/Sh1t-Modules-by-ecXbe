@@ -6,9 +6,6 @@ from .. import loader, utils, fsm
 class MutebMod(loader.Module):
     """Типо блокирует пользователя"""
     
-    def __init__(self):
-        self.db.set("MuteB", "perchat", 0)
-    
     async def muteb_cmd(self, app: Client, message: types.Message, args: str):
         """Включить/выключить"""
         chats = self.db.get("MuteB", "chats", [])
@@ -16,18 +13,19 @@ class MutebMod(loader.Module):
         self.db.set("MuteB", "chats", list({*chats} ^ {message.chat.id}))
         return await message.delete()
     
-    async def mutebc_cmd(self, app: Client, message: types.Message, args: str):
-        botc = self.db.get("MuteB", "botc")
-        self.db.set("MuteB", "botc", list({*botc} ^ {message.chat.id}), 0)
-        
-        return await utils.answer(message, "Bot started, creator sad inside")
-        
     @loader.on(~filters.me)
     async def watcher(self, app: Client, message: types.Message):
         """Принт"""
         if message.chat.id in self.db.get("MuteB", "chats", []):
             return await utils.answer(message, "Пользователь добавил вас в чёрный список. Походу вы ему чем-то насолили")
-
+    
+    async def mutebc_cmd(self, app: Client, message: types.Message, args: str):
+        botc = self.db.get("MuteB", "botc")
+        self.db.set("MuteB", "botc", list({*botc} ^ {message.chat.id}), 0)
+        
+        return await utils.answer(message, "Bot started, creator sad inside")
+   
+    @loader.on(~filters.me)
     async def muteb_message_handler(self, app: Client, message: Message):
         base = {"I've already said it all.", "He's listening to top tracks now", "My creator ponders the meaning of life", "AHAHAHAHAHAHAHAHA", "He's insane.", "Why exactly this fucker created me", "He may have turned off the sound.", "He's waiting for a message"}
         if message.chat.id in self.db.get("MuteB", "botc", []):
