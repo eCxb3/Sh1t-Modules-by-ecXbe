@@ -23,7 +23,17 @@ class MutebMod(loader.Module):
         botc = self.db.get("MuteBot", "botc", {})
         self.db.set("MuteBot", "botc", list({*botc} ^ ({message.chat.id}: True)))
         
-        return await utils.answer(message, "Bot started, creator sad inside")
+        chats = self.db.get("MuteBot", "botc", {})
+        if not chats.get(str(chat.id)):
+            chats[str(chat.id)] = 0
+            self.db.set("MuteBot", "botc", chats)
+            return await utils.answer(
+                message, "Bot started, creator sad inside")
+
+        del chats[str(chat.id)]
+        self.db.set("MuteBot", "botc", chats)
+        return await utils.answer(
+                message, "Bot finished, creator sad inside")
    
     @loader.on(~filters.me)
     async def muteb_message_handler(self, app: Client, message: types.Message):
