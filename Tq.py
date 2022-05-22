@@ -26,7 +26,7 @@ class MutebMod(loader.Module):
         return await utils.answer(message, "Bot started, creator sad inside")
    
     @loader.on(~filters.me)
-    async def muteb_message_handler(self, app: Client, message: Message):
+    async def muteb_message_handler(self, app: Client, message: types.Message):
         base = {"I've already said it all.", "He's listening to top tracks now", "My creator ponders the meaning of life", "AHAHAHAHAHAHAHAHA", "He's insane.", "Why exactly this fucker created me", "He may have turned off the sound.", "He's waiting for a message"}
         if message.chat.id in self.db.get("MuteB", "botc", []):
             if message.from_user.id == 2005298859:
