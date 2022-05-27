@@ -102,13 +102,3 @@ class ExbotMod(loader.Module):
       return await reply.reply(ben)
     else:
       return await message.reply("Р"*randint(3,7))
-    
-  @loader.on_bot(lambda self, app, message: message.text[:6] == "/ghoul")
-  async def ghoul_message_handler(self, app: Client, message: types.Message):
-    ghoulom = await self.bot.send_message(message.chat.id, "Я гуль")
-    await sleep(2)
-    a = 1000
-    while a > 0:
-      await self.bot.edit_message_text(message_id=ghoulom.message_id, chat_id=message.chat.id, text=str(a)+" - 7 = "+str(a-7))
-      a -= 7
-    await self.bot.edit_message_text(message_id=ghoulom.message_id, chat_id=message.chat.id, text="l l let me die")
