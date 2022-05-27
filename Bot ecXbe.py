@@ -79,7 +79,7 @@ class ExbotMod(loader.Module):
     def say_ben():
       ben = randint(1, 4)
       if ben == 1:
-        return "Й"+"Е"*randint(1,3)+"C"
+        return "Й"+"Е"*randint(1,3)+"С"
       elif ben == 2:
         return "ОХ"*randint(2, 4)+"ОУ"
       elif ben == 3:
