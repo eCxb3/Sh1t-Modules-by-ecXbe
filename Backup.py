@@ -8,7 +8,7 @@ class BackupMod(loader.Module):
   
   async def backup_cmd(self, app: Client, message: types.Message, args: str):
     
-    """Включает/Выключает резервное копирование чата. Использование .backup <id чата, куда будут копироваться сообщения>"""
+    """Включает/Выключает резервное копирование чата. Использование: backup <id чата, куда будут копироваться сообщения>"""
     
     chats = self.db.get("Backup", "chats", {})
     if not chats.get(str(message.chat.id)):
