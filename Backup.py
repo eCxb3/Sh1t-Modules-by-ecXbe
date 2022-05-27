@@ -24,6 +24,8 @@ class BackupMod(loader.Module):
 
   @loader.on(filters.photo & filters.video)
   async def watcher(self, app: Client, message: types.Message):
+    print("Backup")
     chats = self.db.get("Backup", "chats", {})
     backup_chat = chats.get(str(message.chat.id))
     await message.copy(int(backup_chat))
+    print("Backup end")
