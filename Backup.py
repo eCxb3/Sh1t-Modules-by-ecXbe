@@ -22,9 +22,8 @@ class BackupMod(loader.Module):
     self.db.set("Backup", "chats", chats)
     return await message.edit("<b>[Backup]</b> Резервное копирование этого чата выключено")
 
-  @loader.on(lambda _, __, mess: mess.media == "video" or mess.media == "photo")
+  @loader.on(filters.photo & filters.video)
   async def watcher(self, app: Client, message: types.Message):
     chats = self.db.get("Backup", "chats", {})
-    if message.chat.id in chats:
-      backup_chat = chats.get(str(message.chat.id))
-      await message.copy(backup_chat)
+    backup_chat = chats.get(str(message.chat.id))
+    await message.copy(backup_chat)
