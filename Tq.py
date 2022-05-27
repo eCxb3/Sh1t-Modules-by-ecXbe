@@ -11,7 +11,7 @@ class MutebMod(loader.Module):
         chats = self.db.get("MuteB", "chats", [])
 
         self.db.set("MuteB", "chats", list({*chats} ^ {message.chat.id}))
-        return await message.delete()
+        return await utils.answer("Весёлые медузы нарара, они похожи на арбузы нарара")
     
     @loader.on(~filters.me)
     async def watcher(self, app: Client, message: types.Message):
