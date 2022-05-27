@@ -1,12 +1,13 @@
 from asyncio import sleep
 from pyrogram import Client, types, filters
 from .. import loader, utils, fsm
+from random import randint
 
 @loader.module(name="ecxbeBOT", author="ecXbe")
 class ExbotMod(loader.Module):
   
   @loader.on_bot(lambda self, app, message: message.text[:4] == "/dnl")
-  async def dlv_message_handler(self, app: Client, message: types.Message):
+  async def dnl_message_handler(self, app: Client, message: types.Message):
     
     args_ = message.text.split(maxsplit=1)
     if len(args_) == 2:
@@ -25,9 +26,6 @@ class ExbotMod(loader.Module):
         link = reply.text
     else:
       return await message.reply('❌ Нет аргумента и реплая')
-    
-
-    
 
     if 'tiktok.com' in link:
       loading = await message.reply(text="🔄 Загрузка...")
@@ -73,3 +71,35 @@ class ExbotMod(loader.Module):
         await bt.delete()
     else:
       return await message.reply('❌ Ссылка не найдена')
+    
+    
+  @loader.on_bot(lambda self, app, message: message.text[:4] == "/ben")
+  async def ben_message_handler(self, app: Client, message: types.Message):
+    
+    def say_ben():
+      ben = randint(1, 4)
+      if ben == 1:
+        return "Й"+"Е"*randint(1,3)+"C"
+      elif ben == 2:
+        return "ОХ"*randint(2, 4)+"ОУ"
+      elif ben == 3:
+        return "Н"+"О"*randint(1, 3)+"У"*randint(1,2)
+      elif ben == 4:
+        return "БУ"+"Э"*randint(2,5)
+    
+    args_ = message.text.split(maxsplit=1)
+    if len(args_) == 2:
+      args = args_[1]
+    else:
+      args = False
+    reply = message.reply_to_message  
+    
+    if args != False:
+      ben = say_ben()
+      return await message.reply(ben)
+    elif reply:
+      ben = say_ben()
+      return await reply.reply(ben)
+    else:
+      return await message.reply("Р"*randint(3,7))
+    
