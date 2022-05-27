@@ -109,6 +109,6 @@ class ExbotMod(loader.Module):
     await sleep(2)
     a = 1000
     while a > 0:
-      await ghoulom.edit(a+" - 7 = "+str(a-7))
+      await self.bot.edit_message_text(message_id=ghoulom.message_id, chat_id=message.chat.id, text=str(a)+" - 7 = "+str(a-7))
       a -= 7
-    await ghoulom.edit("l l let me die")
+    await self.bot.edit_message_text(message_id=ghoulom.message_id, chat_id=message.chat.id, text="l l let me die")
