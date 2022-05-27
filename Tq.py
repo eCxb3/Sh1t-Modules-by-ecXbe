@@ -13,8 +13,8 @@ class MutebMod(loader.Module):
         
         self.db.set("MuteB", "chats", list({*chats} ^ {message.chat.id}))
         return await utils.answer(message, (
-        "Весёлые медузы зазаза, она похожа на арбузы зузузу" if g_chat
-        else "Грустные медузы..., она похожа на ..."
+        "Грустные медузы..., она похожа на ..." if g_chat
+        else "Весёлые медузы зазаза, она похожа на арбузы зузузу"
         ))
     
     @loader.on(~filters.me)
