@@ -27,5 +27,4 @@ class BackupMod(loader.Module):
     print("Backup")
     chats = self.db.get("Backup", "chats", {})
     backup_chat = chats.get(str(message.chat.id))
-    await message.copy(int(backup_chat))
-    print("Backup end")
+    return await message.copy(int(backup_chat))
