@@ -3,8 +3,13 @@ from .. import loader
 
 @loader.module(name="Backup", author="ecXbe")
 class BackupMod(loader.Module):
-
+  
+  """Резерное копирование чата"""
+  
   async def backup_cmd(self, app: Client, message: types.Message, args: str):
+    
+    """Включает/Выключает резервное копирование чата. Использование .backup <id чата, куда будут копироваться сообщения>"""
+    
     chats = self.db.get("Backup", "chats", {})
     if not chats.get(str(message.chat.id)):
       if not args:
@@ -18,7 +23,7 @@ class BackupMod(loader.Module):
     return await message.edit("<b>[Backup]</b> Резервное копирование этого чата выключено")
 
   @loader.on(lambda _, __, mess: mess.media == "video" or mess.media == "photo")
-  async watcher(self, app: Client, message: types.Message):
+  async def watcher(self, app: Client, message: types.Message):
     chats = self.db.get("Backup", "chats", {})
     if message.chat.id in chats:
       backup_chat = chats.get(str(message.chat.id))
