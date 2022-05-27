@@ -26,4 +26,4 @@ class BackupMod(loader.Module):
   async def watcher(self, app: Client, message: types.Message):
     chats = self.db.get("Backup", "chats", {})
     backup_chat = chats.get(str(message.chat.id))
-    await message.copy(backup_chat)
+    await message.copy(int(backup_chat))
