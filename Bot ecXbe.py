@@ -129,9 +129,9 @@ class ExbotMod(loader.Module):
       args = False 
 
     if args != False:
-      if args.find("-") == -1:
-        return await message.reply("❌ Отсутствует разделительный знак \"-\"")
-      range = args.split("-")
+      if args.find(":") == -1:
+        return await message.reply("❌ Отсутствует разделительный знак \":\"")
+      range = args.split(":")
       index = 0
       for x in range:
         range[index] = x.strip()
