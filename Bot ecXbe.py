@@ -104,16 +104,22 @@ class ExbotMod(loader.Module):
 
   @loader.on_bot(lambda self, app, message: message.text[:7] == "/random")
   async def random_message_handler(self, app: Client, message: types.Message):
-    if not message.text:
+    args_ = message.text.split(maxsplit=1)
+    if len(args_) == 2:
+      args = args_[1]
+    else:
+      args = False 
+    
+    if args != False:
+      args = args.split("//")
+      index = 0
+      for x in args:
+        args[index] = x.strip()
+        index += 1
+      await message.reply(choice(args))
+    else:
       return await message.reply("❌ Отсутствует список")
     
-    args = message.text.replace("/random", "").split("//")
-    index = 0
-    for x in args:
-      args[index] = x.strip()
-      index += 1
-    await message.reply(choice(args))
-  
   @loader.on_bot(lambda self, app, message: message.text[:8] == "/randint")
   async def rand_message_handler(self, app: Client, message: types.Message):
     args_ = message.text.split(maxsplit=1)
@@ -126,6 +132,10 @@ class ExbotMod(loader.Module):
       if args.find("-") == -1:
         return await message.reply("❌ Отсутствует разделительный знак \"-\"")
       range = args.split("-")
+      index = 0
+      for x in range:
+        range[index] = x.strip()
+        index += 1
       if range[0].isdigit == False or range[1].isdigit == False:
         return await message.reply("❌ Диапазон должен быть целыми числами")
       return await message.reply(randint(int(range[0]), int(range[1])))  
