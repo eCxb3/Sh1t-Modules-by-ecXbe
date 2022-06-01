@@ -1,7 +1,7 @@
 from asyncio import sleep
 from pyrogram import Client, types, filters
 from .. import loader, utils, fsm
-from random import randint
+from random import randint, choice
 from aiogram.utils.markdown import hlink
 
 @loader.module(name="ecxbeBOT", author="ecXbe")
@@ -101,3 +101,10 @@ class ExbotMod(loader.Module):
       return await reply.reply(ben)
     else:
       return await message.reply("Р"*randint(3,7))
+
+  @loader.on_bot(lambda self, app, message: message.text[:7] == "/random")
+  async def random_message_handler(self, app: Client, message: types.Message, args: str):
+    args = args.replace("/random", "").replace(" ", "").split(",")
+    await message.reply(choice(args))
+  
+  
