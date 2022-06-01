@@ -128,7 +128,7 @@ class ExbotMod(loader.Module):
       range = args.split("-")
       if range[0].isdigit == False or range[1].isdigit == False:
         return await message.reply("❌ Диапазон должен быть целыми числами")
-      return await message.reply(randint(int(range[0], int(range[1]))))    
+      return await message.reply(randint(int(range[0]), int(range[1])))  
     else:
       return await message.reply("❌ Отсутствует диапазон")
       
