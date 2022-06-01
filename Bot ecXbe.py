@@ -6,7 +6,7 @@ from random import randint
 @loader.module(name="ecxbeBOT", author="ecXbe")
 class ExbotMod(loader.Module):
   
-  @loader.on_bot(commands=['dnl'])
+  @loader.on_bot(lambda self, app, message: message.text[:4] == "/dnl")
   async def dnl_message_handler(self, app: Client, message: types.Message):
     
     args_ = message.text.split(maxsplit=1)
