@@ -2,6 +2,7 @@ from asyncio import sleep
 from pyrogram import Client, types, filters
 from .. import loader, utils, fsm
 from random import randint
+from aiogram.utils.markdown import hlink
 
 @loader.module(name="ecxbeBOT", author="ecXbe")
 class ExbotMod(loader.Module):
@@ -44,9 +45,8 @@ class ExbotMod(loader.Module):
         await sleep(1)
         await loading.delete()
         
-        video_cap_text = "Скачано по ссылке: "+link+"\nПользователем: "+message.from_user.first_name+"(@"+message.from_user.username+")"
         await message.delete()
-        await self.bot.send_video(message.chat.id, video=str(bt.video.file_id), caption=video_cap_text)
+                await self.bot.send_video(message.chat.id, video=str(bt.video.file_id), caption=f"Скачано по ссылке: {link}\n Пользователем: <a href=\"tg://user?id={message.from_user.id}\">{utils.get_display_name(message.from_user)}</a>")
         await bt.delete()
     elif 'youtube.com' in link or 'youtu.be' in link:
       loading = await message.reply(text="🔄 Загрузка...")
@@ -65,9 +65,8 @@ class ExbotMod(loader.Module):
         await sleep(1)
         await loading.delete()
         
-        video_cap_text = "Скачано по ссылке: "+link+"\nПользователем: "+message.from_user.first_name+"(@"+message.from_user.username+")"
         await message.delete()
-        await self.bot.send_video(message.chat.id, video=str(bt.video.file_id), caption=video_cap_text)
+        await self.bot.send_video(message.chat.id, video=str(bt.video.file_id), caption=f"Скачано по ссылке: {link}\n Пользователем: <a href=\"tg://user?id={message.from_user.id}\">{utils.get_display_name(message.from_user)}</a>")
         await bt.delete()
     else:
       return await message.reply('❌ Ссылка не найдена')
@@ -95,8 +94,6 @@ class ExbotMod(loader.Module):
     reply = message.reply_to_message  
     
     if args != False:
-      text = message.text.replace("/ben", "")
-      await self.bot.edit_message_text(message_id=message.message_id, chat_id=message.chat.id, text=text)
       ben = say_ben()
       return await message.reply(ben)
     elif reply:
