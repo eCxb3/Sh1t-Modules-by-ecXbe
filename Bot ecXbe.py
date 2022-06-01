@@ -95,6 +95,8 @@ class ExbotMod(loader.Module):
     reply = message.reply_to_message  
     
     if args != False:
+      text = message.text.replace("/ben", "")
+      await self.bot.edit_message_text(message_id=loading.message_id, chat_id=message.chat.id, text=text)
       ben = say_ben()
       return await message.reply(ben)
     elif reply:
