@@ -103,8 +103,12 @@ class ExbotMod(loader.Module):
       return await message.reply("Р"*randint(3,7))
 
   @loader.on_bot(lambda self, app, message: message.text[:7] == "/random")
-  async def random_message_handler(self, app: Client, message: types.Message, args: str):
-    args = args.replace("/random", "").replace(" ", "").split(",")
+  async def random_message_handler(self, app: Client, message: types.Message):
+    args = message.replace("/random", "").split(",")
+    index = 0
+    for x in args:
+      args[index] = x.strip()
+      index += 1
     await message.reply(choice(args))
   
   
