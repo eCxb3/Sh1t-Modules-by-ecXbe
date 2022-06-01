@@ -46,7 +46,7 @@ class ExbotMod(loader.Module):
         await loading.delete()
         
         await message.delete()
-                await self.bot.send_video(message.chat.id, video=str(bt.video.file_id), caption=f"Скачано по ссылке: {link}\n Пользователем: <a href=\"tg://user?id={message.from_user.id}\">{utils.get_display_name(message.from_user)}</a>")
+        await self.bot.send_video(message.chat.id, video=str(bt.video.file_id), caption=f"Скачано по ссылке: {link}\n Пользователем: <a href=\"tg://user?id={message.from_user.id}\">{utils.get_display_name(message.from_user)}</a>")
         await bt.delete()
     elif 'youtube.com' in link or 'youtu.be' in link:
       loading = await message.reply(text="🔄 Загрузка...")
