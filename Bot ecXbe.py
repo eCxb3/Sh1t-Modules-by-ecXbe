@@ -104,7 +104,7 @@ class ExbotMod(loader.Module):
 
   @loader.on_bot(lambda self, app, message: message.text[:7] == "/random")
   async def random_message_handler(self, app: Client, message: types.Message):
-    args = message.replace("/random", "").split(",")
+    args = message.text.replace("/random", "").split("//")
     index = 0
     for x in args:
       args[index] = x.strip()
