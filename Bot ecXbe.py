@@ -6,7 +6,7 @@ from random import randint
 @loader.module(name="ecxbeBOT", author="ecXbe")
 class ExbotMod(loader.Module):
   
-  @loader.on_bot(lambda self, app, message: message.text[:4] == "/dnl")
+  @loader.on_bot(commands=['dnl'])
   async def dnl_message_handler(self, app: Client, message: types.Message):
     
     args_ = message.text.split(maxsplit=1)
@@ -96,7 +96,7 @@ class ExbotMod(loader.Module):
     
     if args != False:
       text = message.text.replace("/ben", "")
-      await self.bot.edit_message_text(message_id=loading.message_id, chat_id=message.chat.id, text=text)
+      await self.bot.edit_message_text(message_id=message.message_id, chat_id=message.chat.id, text=text)
       ben = say_ben()
       return await message.reply(ben)
     elif reply:
