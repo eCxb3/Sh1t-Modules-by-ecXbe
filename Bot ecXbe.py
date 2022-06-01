@@ -104,8 +104,7 @@ class ExbotMod(loader.Module):
 
   @loader.on_bot(lambda self, app, message: message.text[:7] == "/random")
   async def random_message_handler(self, app: Client, message: types.Message):
-    args = message.text.split()
-    if len(args) < 1:
+    if not message.text:
       return await message.reply("❌ Отсутствует список")
     
     args = message.text.replace("/random", "").split("//")
@@ -115,7 +114,7 @@ class ExbotMod(loader.Module):
       index += 1
     await message.reply(choice(args))
   
-  @loader.on_bot(lambda self, app, message: message.text[:7] == "/randint")
+  @loader.on_bot(lambda self, app, message: message.text[:8] == "/randint")
   async def rand_message_handler(self, app: Client, message: types.Message):
     args_ = message.text.split(maxsplit=1)
     if len(args_) == 2:
