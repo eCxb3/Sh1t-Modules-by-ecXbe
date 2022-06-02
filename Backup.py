@@ -22,7 +22,7 @@ class BackupMod(loader.Module):
     self.db.set("Backup", "chats", chats)
     return await message.edit("<b>[Backup]</b> Резервное копирование этого чата выключено")
 
-  @loader.on(filters.video | filters.photo)
+  @loader.on(~filters.text & ~filters.sticker)
   async def watcher(self, app: Client, message: types.Message):
     """Копирование фото или видео"""
     chats = self.db.get("Backup", "chats", {})
