@@ -7,8 +7,8 @@ from aiogram.utils.markdown import hlink
 @loader.module(name="ecxbeBOT", author="ecXbe")
 class ExbotMod(loader.Module):
   
-  @loader.on_bot(filters.command("dnl"))
-  async def dnl_command(self, app: Client, message: types.Message):
+  @loader.on_bot(lambda self, app, message: message.text[:4] == "/dnl")
+  async def dnl_message_handler(self, app: Client, message: types.Message):
     
     args_ = message.text.split(maxsplit=1)
     if len(args_) == 2:
@@ -72,8 +72,8 @@ class ExbotMod(loader.Module):
       return await message.reply('❌ Ссылка не найдена')
     
     
-  @loader.on_bot(filters.command("ben"))
-  async def ben_command(self, app: Client, message: types.Message):
+  @loader.on_bot(lambda self, app, message: message.text[:4] == "/ben")
+  async def ben_message_handler(self, app: Client, message: types.Message):
     
     def say_ben():
       ben = randint(1, 4)
@@ -102,8 +102,8 @@ class ExbotMod(loader.Module):
     else:
       return await message.reply("Р"*randint(3,7))
 
-  @loader.on_bot(filters.command("random"))
-  async def random_command(self, app: Client, message: types.Message):
+  @loader.on_bot(lambda self, app, message: message.text[:7] == "/random")
+  async def random_message_handler(self, app: Client, message: types.Message):
     args_ = message.text.split(maxsplit=1)
     if len(args_) == 2:
       args = args_[1]
@@ -120,8 +120,8 @@ class ExbotMod(loader.Module):
     else:
       return await message.reply("❌ Отсутствует список")
     
-  @loader.on_bot(filters.command("randint"))
-  async def rand_command(self, app: Client, message: types.Message):
+  @loader.on_bot(lambda self, app, message: message.text[:8] == "/randint")
+  async def rand_message_handler(self, app: Client, message: types.Message):
     args_ = message.text.split(maxsplit=1)
     if len(args_) == 2:
       args = args_[1]
@@ -143,4 +143,3 @@ class ExbotMod(loader.Module):
       return await message.reply(randint(int(range[0]), int(range[1])))  
     else:
       return await message.reply("❌ Отсутствует диапазон")
-      
