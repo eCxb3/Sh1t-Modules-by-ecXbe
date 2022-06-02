@@ -8,7 +8,7 @@ from aiogram.utils.markdown import hlink
 class ExbotMod(loader.Module):
   
   @loader.on_bot(filters.command("dnl"))
-  async def dnl_message_handler(self, app: Client, message: types.Message):
+  async def dnl_command(self, app: Client, message: types.Message):
     
     args_ = message.text.split(maxsplit=1)
     if len(args_) == 2:
@@ -73,7 +73,7 @@ class ExbotMod(loader.Module):
     
     
   @loader.on_bot(filters.command("ben"))
-  async def ben_message_handler(self, app: Client, message: types.Message):
+  async def ben_command(self, app: Client, message: types.Message):
     
     def say_ben():
       ben = randint(1, 4)
@@ -103,7 +103,7 @@ class ExbotMod(loader.Module):
       return await message.reply("Р"*randint(3,7))
 
   @loader.on_bot(filters.command("random"))
-  async def random_message_handler(self, app: Client, message: types.Message):
+  async def random_command(self, app: Client, message: types.Message):
     args_ = message.text.split(maxsplit=1)
     if len(args_) == 2:
       args = args_[1]
@@ -121,7 +121,7 @@ class ExbotMod(loader.Module):
       return await message.reply("❌ Отсутствует список")
     
   @loader.on_bot(filters.command("randint"))
-  async def rand_message_handler(self, app: Client, message: types.Message):
+  async def rand_command(self, app: Client, message: types.Message):
     args_ = message.text.split(maxsplit=1)
     if len(args_) == 2:
       args = args_[1]
