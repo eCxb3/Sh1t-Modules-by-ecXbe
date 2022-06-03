@@ -16,7 +16,7 @@ from aiogram.types import (
 @loader.module(name="ecxbeBOT", author="ecXbe")
 class ExbotMod(loader.Module):
   
-  @loader.on_bot(lambda self, app, message: message.text[:4] == "/dnl")
+  @loader.on_bot(lambda _, __, message: message.text[:4] == "/dnl")
   async def dnl_message_handler(self, app: Client, message: Message):
     
     args_ = message.text.split(maxsplit=1)
@@ -81,7 +81,7 @@ class ExbotMod(loader.Module):
       return await message.reply('❌ Ссылка не найдена')
     
     
-  @loader.on_bot(lambda self, app, message: message.text[:4] == "/ben")
+  @loader.on_bot(lambda _, __, message: message.text[:4] == "/ben")
   async def ben_message_handler(self, app: Client, message: Message):
     
     def say_ben():
@@ -111,7 +111,7 @@ class ExbotMod(loader.Module):
     else:
       return await message.reply("Р"*randint(3,7))
 
-  @loader.on_bot(lambda self, app, message: message.text[:7] == "/random")
+  @loader.on_bot(lambda _, __, message: message.text[:7] == "/random")
   async def random_message_handler(self, app: Client, message: Message):
     args_ = message.text.split(maxsplit=1)
     if len(args_) == 2:
@@ -129,7 +129,7 @@ class ExbotMod(loader.Module):
     else:
       return await message.reply("❌ Отсутствует список")
     
-  @loader.on_bot(lambda self, app, message: message.text[:8] == "/randint")
+  @loader.on_bot(lambda _, __, message: message.text[:8] == "/randint")
   async def rand_message_handler(self, app: Client, message: Message):
     args_ = message.text.split(maxsplit=1)
     if len(args_) == 2:
